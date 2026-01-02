@@ -5,7 +5,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./auth/login/login.component').then(c => c.LoginComponent)
+      import('./auth/login/login').then(c => c.LoginComponent)
   },
   {
     path: 'register',
@@ -23,7 +23,7 @@ export const routes: Routes = [
   {
     path: 'projects',
     loadComponent: () =>
-      import('./projects/project-list/project-list.component')
+      import('./projects/project-list/project-list')
         .then(c => c.ProjectListComponent)
   },
 
