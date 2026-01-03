@@ -26,13 +26,8 @@ export class TaskListComponent {
     private projectService: ProjectService,
     private authService: AuthService
   ) {
-    // get projectId from URL: /projects/:projectId/tasks
     this.projectId = this.route.snapshot.paramMap.get('projectId')!;
-
-    // check role
     this.isOwner = this.authService.getUserRole() === 'Owner';
-
-    // load tasks
     this.loadTasks();
   }
 
@@ -50,5 +45,8 @@ export class TaskListComponent {
       });
   }
 
- 
+  // OWNER ONLY
+  updateStatus(taskId: string, status: string) {
+    this.projectService.updateTaskStatus(this.projectId, taskId, status).subscribe(() => this.loadTasks());
+  }
 }

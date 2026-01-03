@@ -30,4 +30,12 @@ createTask(projectId: string, title: string) {
     { title }
   );
 }
+
+updateTaskStatus(projectId: string, taskId: string, status: string) {
+  return this.http.patch(
+    `${this.apiUrl}/${projectId}/tasks/${taskId}/status`,
+    { status }
+  );
+}
+
 }

@@ -26,18 +26,35 @@
 
     @for (task of tasks; track task.id) {
       <div class="card mb-2">
-        <div class="card-body d-flex justify-content-between">
-          <div>
-            <strong>{{ task.title }}</strong>
-            <div>Status: {{ task.status }}</div>
+        <div class="card-body">
+          <strong>{{ task.title }}</strong>
+
+          <div class="mt-2">
+            Status:
+            <span class="badge bg-secondary">
+              {{ task.status }}
+            </span>
           </div>
 
+          <!-- OWNER ONLY: UPDATE STATUS -->
+          @if (isOwner) {
+            <select  #statusSelect
+                     class="form-select mt-2"
+                 (change)="updateStatus(task.id, statusSelect.value)">
+              <option disabled selected>
+                Change status
+              </option>
+              <option value="Todo">Todo</option>
+              <option value="InProgress">InProgress</option>
+              <option value="Done">Done</option>
+            </select>
+          }
         </div>
       </div>
     }
 
   } @else {
-    <div class="text-muted">
+    <div class="text-muted"> 
       Loading tasks...
     </div>
   }
