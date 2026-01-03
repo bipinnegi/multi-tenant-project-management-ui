@@ -7,17 +7,7 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./auth/login/login').then(c => c.LoginComponent)
   },
-  {
-    path: 'register',
-    loadComponent: () =>
-      import('./auth/register/register.component').then(c => c.RegisterComponent)
-  },
-  {
-    path: 'accept-invite',
-    loadComponent: () =>
-      import('./auth/accept-invite/accept-invite.component')
-        .then(c => c.AcceptInviteComponent)
-  },
+  
 
   // 🔐 Protected routes
   {
