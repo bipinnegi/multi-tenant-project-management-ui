@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   // Public routes
@@ -12,6 +13,7 @@ export const routes: Routes = [
   // 🔐 Protected routes
   {
     path: 'projects',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./projects/project-list/project-list')
         .then(c => c.ProjectListComponent)
