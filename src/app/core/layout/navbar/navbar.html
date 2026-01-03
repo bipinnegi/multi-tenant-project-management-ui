@@ -1,0 +1,9 @@
+<nav class="navbar navbar-dark bg-dark px-3" *ngIf="authService.isLoggedIn()">
+  <a class="navbar-brand" routerLink="/projects">
+    Project Manager
+  </a>
+
+  <button class="btn btn-outline-light" (click)="logout()">
+    Logout
+  </button>
+</nav>
