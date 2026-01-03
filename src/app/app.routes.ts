@@ -19,6 +19,14 @@ export const routes: Routes = [
         .then(c => c.ProjectListComponent)
   },
 
+  {
+  path: 'projects/:projectId/tasks',
+  loadComponent: () =>
+    import('./tasks/task-list/task-list')
+      .then(m => m.TaskListComponent),
+  canActivate: [authGuard]
+},
+
   // Default
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 

@@ -17,4 +17,17 @@ export class ProjectService {
   createProject(name: string , description: string){
     return this.http.post(this.apiUrl, {name, description });
   }
+
+  getTasks(projectId: string) {
+  return this.http.get<any[]>(
+    `${this.apiUrl}/${projectId}/tasks`
+  );
+}
+
+createTask(projectId: string, title: string) {
+  return this.http.post(
+    `${this.apiUrl}/${projectId}/tasks`,
+    { title }
+  );
+}
 }

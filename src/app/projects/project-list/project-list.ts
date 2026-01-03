@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ProjectService } from '../../core/services/project';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../core/services/auth';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './project-list.html',
   styleUrls: ['./project-list.css']
   
