@@ -1,2 +1,32 @@
-<h2>Projects</h2>
-<p>You are logged in successfully 🎉</p>
+<div class="container mt-4">
+  <h3>Projects</h3>
+
+  @if (projects$ | async; as projects) {
+
+    @if (projects.length === 0) {
+      <div class="alert alert-info">
+        No projects found.
+      </div>
+    }
+
+    @if (projects.length > 0) {
+      <div class="row">
+        @for (project of projects; track project.id) {
+          <div class="col-md-4 mb-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{ project.name }}</h5>
+                <p class="card-text">{{ project.description }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+
+  } @else {
+    <div class="text-muted">
+      Loading projects...
+    </div>
+  }
+</div>
