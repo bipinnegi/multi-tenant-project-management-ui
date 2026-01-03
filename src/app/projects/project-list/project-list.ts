@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProjectService } from '../../core/services/project';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-project-list',
@@ -18,7 +19,10 @@ export class ProjectListComponent {
   name='';
   description= '';
 
-  constructor(private projectService: ProjectService) {
+  isOwner = false;
+
+  constructor(private projectService: ProjectService, private authService: AuthService) {
+    this.isOwner = this.authService.getUserRole() === 'Owner';
     this.loadProjects();
   }
 

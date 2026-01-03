@@ -1,29 +1,32 @@
-<div class="card mb-4">
-  <div class="card-body">
-    <h5 class="card-title">Create Project</h5>
+@if (isOwner) {
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Create Project</h5>
 
-    <div class="mb-2">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Project name"
-        [(ngModel)]="name"
-      />
+      <div class="mb-2">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Project name"
+          [(ngModel)]="name"
+        />
+      </div>
+
+      <div class="mb-2">
+        <textarea
+          class="form-control"
+          placeholder="Project description"
+          [(ngModel)]="description">
+        </textarea>
+      </div>
+
+      <button class="btn btn-primary" (click)="createProject()">
+        Create
+      </button>
     </div>
-
-    <div class="mb-2">
-      <textarea
-        class="form-control"
-        placeholder="Project description"
-        [(ngModel)]="description">
-      </textarea>
-    </div>
-
-    <button class="btn btn-primary" (click)="createProject()">
-      Create
-    </button>
   </div>
-</div>
+}
+
 
 <div class="container mt-4">
   <h3>Projects</h3>
