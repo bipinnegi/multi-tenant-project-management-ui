@@ -27,6 +27,14 @@ export const routes: Routes = [
   canActivate: [authGuard]
 },
 
+{
+  path: 'invite',
+  loadComponent: () =>
+    import('./invitations/invite-user/invite-user')
+      .then(m => m.InviteUserComponent)
+},
+
+
   // Default
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 

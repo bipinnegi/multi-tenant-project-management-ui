@@ -11,7 +11,13 @@ import { AuthService } from '../../services/auth';
   styleUrl: './navbar.css',
 })
 export class NavbarComponent {
-  constructor(public authService: AuthService){}
+  
+
+  isOwner = false;
+
+  constructor(private authService: AuthService) {
+  this.isOwner = this.authService.getUserRole() === 'Owner';
+  }
 
   logout(){
     this.authService.logout();
