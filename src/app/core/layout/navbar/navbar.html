@@ -1,16 +1,21 @@
-<nav class="navbar navbar-dark bg-dark px-3" *ngIf="authService.isLoggedIn()">
-  <a class="navbar-brand" routerLink="/projects">
-    Project Manager
-  </a>
+@if (isLoggedIn) {
+  <nav class="navbar navbar-dark bg-dark px-3">
 
-  @if (isOwner) {
-  <a class="btn btn-outline-primary me-2" routerLink="/invite">
-    Invite User
-  </a>
+    <a class="navbar-brand" routerLink="/projects">
+      Project Manager
+    </a>
+
+    <div class="ms-auto">
+      @if (isOwner) {
+        <a class="btn btn-outline-light me-2" routerLink="/invite">
+          Invite User
+        </a>
+      }
+
+      <button class="btn btn-danger btn-sm" (click)="logout()">
+        Logout
+      </button>
+    </div>
+
+  </nav>
 }
-
-
-  <button class="btn btn-outline-light" (click)="logout()">
-    Logout
-  </button>
-</nav>
