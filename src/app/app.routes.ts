@@ -34,6 +34,13 @@ export const routes: Routes = [
       .then(m => m.InviteUserComponent)
 },
 
+{
+  path: 'accept-invitation',
+  loadComponent: () =>
+    import('./invitations/accept-invitation/accept-invitation')
+      .then(m => m.AcceptInvitationComponent)
+},
+
 
   // Default
   { path: '', redirectTo: 'login', pathMatch: 'full' },

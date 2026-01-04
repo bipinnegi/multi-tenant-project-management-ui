@@ -10,7 +10,7 @@ export const authInterceptor: HttpInterceptorFn= (
         const authService = inject(AuthService);
         const token = authService.getToken();
 
-        if(token){
+        if(token && !req.url.includes('/api/invitations/accept')){
             const authReq= req.clone({
                 setHeaders:{ Authorization: `Bearer ${token}`}
             });
