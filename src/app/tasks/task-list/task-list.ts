@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { ProjectService } from '../../core/services/project';
 import { AuthService } from '../../core/services/auth';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-task-list',
@@ -15,7 +17,9 @@ import { AuthService } from '../../core/services/auth';
 })
 export class TaskListComponent {
 
-  tasks$!: Observable<any[]>;
+  tasks: any[] = [];
+ loading = true;
+
   projectId!: string;
 
   newTaskTitle = '';
@@ -24,7 +28,8 @@ export class TaskListComponent {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {
     this.projectId = this.route.snapshot.paramMap.get('projectId')!;
     this.isOwner = this.authService.getUserRole() === 'Owner';
@@ -32,8 +37,22 @@ export class TaskListComponent {
   }
 
   loadTasks() {
-    this.tasks$ = this.projectService.getTasks(this.projectId);
-  }
+  this.loading = true;
+
+  this.projectService.getTasks(this.projectId).subscribe({
+    next: (tasks) => {
+      this.tasks = tasks;
+      this.loading = false;
+      this.cdr.detectChanges();
+    },
+    error: (err) => {
+      console.error(err);
+      this.loading = false;
+      this.cdr.detectChanges();
+    }
+  });
+}
+
 
   // OWNER ONLY
   createTask() {
@@ -47,6 +66,36 @@ export class TaskListComponent {
 
   // OWNER ONLY
   updateStatus(taskId: string, status: string) {
-    this.projectService.updateTaskStatus(this.projectId, taskId, status).subscribe(() => this.loadTasks());
+  this.projectService
+    .updateTaskStatus(this.projectId, taskId, status)
+    .subscribe({
+      next: () => {
+        // ✅ DIRECTLY UPDATE LOCAL STATE
+        const task = this.tasks.find(t => t.id === taskId);
+        if (task) {
+          task.status = status;
+        }
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Failed to update task status', err);
+      }
+    });
   }
+
+
+  getStatusLabel(status: string): string {
+  switch (status) {
+    case 'Todo':
+      return 'Todo';
+    case 'InProgress':
+      return 'In progress';
+    case 'Done':
+      return 'Done';
+    default:
+      return status;
+   }
+  }
+
+
 }

@@ -15,47 +15,48 @@
     </div>
   }
 
-  <!-- TASK LIST -->
-  @if (tasks$ | async; as tasks) {
-
-    @if (tasks.length === 0) {
-      <div class="alert alert-info">
-        No tasks found.
-      </div>
-    }
-
-    @for (task of tasks; track task.id) {
-      <div class="card mb-2">
-        <div class="card-body">
-          <strong>{{ task.title }}</strong>
-
-          <div class="mt-2">
-            Status:
-            <span class="badge bg-secondary">
-              {{ task.status }}
-            </span>
-          </div>
-
-          <!-- OWNER ONLY: UPDATE STATUS -->
-          @if (isOwner) {
-            <select  #statusSelect
-                     class="form-select mt-2"
-                 (change)="updateStatus(task.id, statusSelect.value)">
-              <option disabled selected>
-                Change status
-              </option>
-              <option value="Todo">Todo</option>
-              <option value="InProgress">InProgress</option>
-              <option value="Done">Done</option>
-            </select>
-          }
-        </div>
-      </div>
-    }
-
-  } @else {
-    <div class="text-muted"> 
+  <!-- LOADING STATE -->
+  @if (loading) {
+    <div class="text-muted">
       Loading tasks...
+    </div>
+  }
+
+  <!-- EMPTY STATE -->
+  @if (!loading && tasks.length === 0) {
+    <div class="alert alert-info">
+      No tasks found.
+    </div>
+  }
+
+  <!-- TASK LIST -->
+  @for (task of tasks; track task.id) {
+    <div class="card mb-2">
+      <div class="card-body">
+        <strong>{{ task.title }}</strong>
+
+        <div class="mt-2">
+          Status:
+          <span class="badge bg-secondary">
+            {{ task.status }}
+          </span>
+        </div>
+
+        <!-- OWNER ONLY: UPDATE STATUS -->
+        @if (isOwner) {
+          <select
+            class="form-select mt-2"
+            (change)="updateStatus(task.id, $any($event.target).value)"
+          >
+            <option value="" disabled>
+              Change status
+            </option>
+            <option value="Todo">Todo</option>
+            <option value="InProgress">InProgress</option>
+            <option value="Done">Done</option>
+          </select>
+        }
+      </div>
     </div>
   }
 </div>
