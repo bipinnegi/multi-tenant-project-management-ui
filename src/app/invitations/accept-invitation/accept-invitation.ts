@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InvitationService } from '../../core/services/invitation';
@@ -25,7 +25,8 @@ export class AcceptInvitationComponent {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private invitationService: InvitationService
+    private invitationService: InvitationService,
+    private cdr: ChangeDetectorRef
   ){
     this.token = decodeURIComponent(this.route.snapshot.queryParamMap.get('token') ||'');
   }
@@ -39,7 +40,7 @@ export class AcceptInvitationComponent {
       next:() => {
         this.successMessage='invitation accepted successfully. Please login!';
         this.errorMessage='';
-
+        this.cdr.detectChanges();
         //redirect to login after few sec
         setTimeout(()=>{
           this.router.navigate(['/login']);
@@ -49,6 +50,7 @@ export class AcceptInvitationComponent {
       error: ()=> {
         this.errorMessage='failed to accept invitation';
         this.successMessage= '';
+        this.cdr.detectChanges();
       }
     });
 

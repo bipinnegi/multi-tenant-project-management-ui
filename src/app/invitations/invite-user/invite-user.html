@@ -35,8 +35,10 @@
         </select>
       </div>
 
-      <button class="btn btn-primary" (click)="invite()">
-        Send Invitation
+      <button class="btn btn-primary" (click)="invite()" [disabled]="loading">
+       @if(loading)
+          {sending...}
+        @else{ Send Invitation}
       </button>
 
     </div>

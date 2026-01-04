@@ -19,7 +19,7 @@ sendInvitation(email: string, role: string){
 //inviteee: accept invitation
 
 acceptInvitation(FullName: string, token: string, password: string){
-    return this.http.post(`${this.apiUrl}/accept`, {FullName, token, password});
+    return this.http.post(`${this.apiUrl}/accept`, {FullName, token, password}, {responseType:'text'});
 }
 
 }

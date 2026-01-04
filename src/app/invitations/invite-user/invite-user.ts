@@ -3,43 +3,57 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvitationService } from '../../core/services/invitation';
 import { AuthService } from '../../core/services/auth';
+import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-invite-user',
-  standalone:true,
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './invite-user.html',
   styleUrl: './invite-user.css',
 })
 export class InviteUserComponent {
-  email= '';
-  role= 'Member';
-  successMessage= '';
+
+  email = '';
+  role = 'Member';
+
+  successMessage = '';
   errorMessage = '';
+
+  loading = false; // ✅ NEW
 
   constructor(
     private invitationService: InvitationService,
-    private authService: AuthService
-  ){}
+    private authService: AuthService,
+     private cdr: ChangeDetectorRef
+  ) {}
 
-  invite(){
-    //ui-level safety check
-    if(this.authService.getUserRole() !=='Owner'){
-        this.errorMessage = 'you are not allowed to ivite the user';
-        return;
+  invite() {
+    // UI-level safety check
+    if (this.authService.getUserRole() !== 'Owner') {
+      this.errorMessage = 'You are not allowed to invite users';
+      return;
     }
-   this.invitationService.sendInvitation(this.email, this.role).subscribe({
-    next:()=>{
-      this.successMessage='invitation sent successgully';
-      this.errorMessage= '';
-      this.email= '';
-    },
-    error: ()=>{
-      this.errorMessage ='failed to send invitation';
-      this.successMessage='';
-    }
-   })
 
+    if (this.loading) return; // ✅ Prevent double click
+
+    this.loading = true;
+    this.successMessage = '';
+    this.errorMessage = '';
+
+    this.invitationService.sendInvitation(this.email, this.role).subscribe({
+      next: () => {
+        this.successMessage = 'Invitation sent successfully';
+        this.email = '';
+        this.loading = false;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.errorMessage = 'Failed to send invitation';
+        this.loading = false;
+        this.cdr.detectChanges();
+      }
+    });
   }
-
 }
