@@ -1,0 +1,35 @@
+<svg
+  width="600"
+  height="400"
+  viewBox="0 0 600 400"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width="600" height="400" rx="20" fill="#F4F5F7"/>
+
+  <!-- Header -->
+  <rect x="40" y="40" width="520" height="40" rx="6" fill="#DEEBFF"/>
+  <circle cx="70" cy="60" r="10" fill="#0052CC"/>
+  <rect x="95" y="50" width="120" height="20" rx="4" fill="#B3D4FF"/>
+
+  <!-- Columns -->
+  <rect x="60" y="110" width="140" height="220" rx="8" fill="#FFFFFF"/>
+  <rect x="230" y="110" width="140" height="220" rx="8" fill="#FFFFFF"/>
+  <rect x="400" y="110" width="140" height="220" rx="8" fill="#FFFFFF"/>
+
+  <!-- Column Titles -->
+  <rect x="85" y="125" width="90" height="14" rx="4" fill="#DFE1E6"/>
+  <rect x="255" y="125" width="90" height="14" rx="4" fill="#DFE1E6"/>
+  <rect x="425" y="125" width="90" height="14" rx="4" fill="#DFE1E6"/>
+
+  <!-- Cards -->
+  <rect x="75" y="160" width="110" height="40" rx="6" fill="#E9F2FF"/>
+  <rect x="75" y="215" width="110" height="40" rx="6" fill="#E9F2FF"/>
+
+  <rect x="245" y="160" width="110" height="40" rx="6" fill="#E3FCEF"/>
+  <rect x="415" y="160" width="110" height="40" rx="6" fill="#FFF0B3"/>
+
+  <!-- Status badges -->
+  <rect x="95" y="175" width="50" height="10" rx="5" fill="#0052CC"/>
+  <rect x="265" y="175" width="50" height="10" rx="5" fill="#36B37E"/>
+  <rect x="435" y="175" width="50" height="10" rx="5" fill="#FFAB00"/>
+</svg>

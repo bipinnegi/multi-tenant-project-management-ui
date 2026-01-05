@@ -97,6 +97,14 @@
   justify-content: center;
 }
 
-.preview-img {
-  max-width: 80%;
+.brand-logo {
+  width: 36px;
+  margin-bottom: 0px;
 }
+
+.preview-img {
+  max-width: 100%;
+  height: auto;
+}
+
+
