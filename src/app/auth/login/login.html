@@ -1,46 +1,53 @@
-<div class="container mt-5" style="max-width: 400px;">
-  <h3 class="text-center mb-3">Login</h3>
+<div class="jira-login-wrapper">
+  <!-- LEFT PANEL -->
+  <div class="jira-left">
+    <div class="jira-brand">
+      <img src="assets/jira-logo.svg" alt="Logo" />
+      <span>Project Manager</span>
+    </div>
 
-  <form (ngSubmit)="login()">
-    <div class="mb-3">
-      <label>Email</label>
+    <h1>Where your teams<br />work together</h1>
+
+    <form (ngSubmit)="login()" class="jira-form">
+      <label>Work email</label>
       <input
         type="email"
-        class="form-control"
+        placeholder="you@company.com"
         [(ngModel)]="email"
         name="email"
         required
       />
-    </div>
 
-    <div class="mb-3">
       <label>Password</label>
       <input
         type="password"
-        class="form-control"
+        placeholder="••••••••"
         [(ngModel)]="password"
         name="password"
         required
       />
+
+      <button type="submit" class="btn-primary">
+        Log in
+      </button>
+    </form>
+
+    <div *ngIf="error" class="error-box">
+      {{ error }}
     </div>
 
-    <button class="btn btn-primary w-100" type="submit">
-      Login
-    </button>
-  </form>
-
-  <div *ngIf="error" class="alert alert-danger mt-3">
-    {{ error }}
+    <div class="jira-footer">
+      <span>Don’t have an account?</span>
+      <a routerLink="/register">Sign up</a>
+    </div>
   </div>
-  <div class="mt-3 text-center">
-  <span>Don't have an account?</span>
-  <button
-    type="button"
-    class="btn btn-link p-0 ms-1"
-    routerLink="/register"
-  >
-    Register
-  </button>
-</div>
 
+  <!-- RIGHT PANEL -->
+  <div class="jira-right">
+    <img
+      src="assets/jira-preview.svg"
+      alt="Preview"
+      class="preview-img"
+    />
+  </div>
 </div>

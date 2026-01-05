@@ -1,0 +1,102 @@
+/* Layout */
+.jira-login-wrapper {
+  display: flex;
+  height: 100vh;
+  background: #e9f2ff;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* LEFT */
+.jira-left {
+  width: 45%;
+  padding: 60px;
+  background: #e9f2ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.jira-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+.jira-brand img {
+  width: 32px;
+}
+
+.jira-left h1 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* Form */
+.jira-form {
+  max-width: 360px;
+}
+
+.jira-form label {
+  font-size: 14px;
+  margin-top: 15px;
+  display: block;
+}
+
+.jira-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 24px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.btn-primary {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px;
+  border-radius: 24px;
+  background: #0052cc;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #0747a6;
+}
+
+/* Error */
+.error-box {
+  margin-top: 15px;
+  color: #de350b;
+  font-size: 14px;
+}
+
+/* Footer */
+.jira-footer {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.jira-footer a {
+  color: #0052cc;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+/* RIGHT */
+.jira-right {
+  width: 55%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-img {
+  max-width: 80%;
+}
