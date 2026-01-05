@@ -12,6 +12,29 @@ export class AuthService {
     private http: HttpClient,
     private router: Router
   ){}
+  setAuthData(auth: {
+  token: string;
+  role: string;
+  tenantId: string;
+}) {
+  localStorage.setItem('token', auth.token);
+  localStorage.setItem('role', auth.role);
+  localStorage.setItem('tenantId', auth.tenantId);
+}
+
+
+  registerOwner(data: {
+    tenantName: string;
+    ownerName: string;
+    ownerEmail: string;
+    password: string;
+  }) {
+       return this.http.post<any>(
+         `${this.apiUrl}/register`,
+         data
+          );
+  }
+
 
   login(email: string, password:string){
     return this.http.post<any>(`${this.apiUrl}/login`,{email, password});

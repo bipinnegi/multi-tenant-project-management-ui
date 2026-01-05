@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
+import { RegisterComponent } from './auth/register/register';
 
 export const routes: Routes = [
   // Public routes
@@ -9,6 +10,10 @@ export const routes: Routes = [
       import('./auth/login/login').then(c => c.LoginComponent)
   },
   
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
 
   // 🔐 Protected routes
   {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProjectService } from '../../core/services/project';
@@ -22,20 +22,39 @@ export class ProjectListComponent {
 
   isOwner = false;
 
-  constructor(private projectService: ProjectService, private authService: AuthService) {
+  constructor(private projectService: ProjectService, private authService: AuthService, private cdr: ChangeDetectorRef) {
     this.isOwner = this.authService.getUserRole() === 'Owner';
     this.loadProjects();
   }
 
   loadProjects(){
     this.projects$ = this.projectService.getProjects();
+    
   }
 
-  createProject(){
-    this.projectService.createProject(this.name, this.description).subscribe(() =>{
-           this.name='';
-           this.description='';
-           this.loadProjects();
-    });
+  createProject() {
+  if (!this.name || !this.description) {
+    return;
   }
+
+  this.projectService
+    .createProject(this.name, this.description)
+    .subscribe({
+      next: () => {
+        // reload list
+        this.loadProjects();
+
+        // reset form
+        this.name = '';
+        this.description = '';
+
+        // 🔥 force UI update
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Failed to create project', err);
+      }
+    });
+}
+
 }

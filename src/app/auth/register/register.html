@@ -1,0 +1,53 @@
+<div class="container mt-5" style="max-width: 500px;">
+  <h3 class="mb-4">Register as Owner</h3>
+
+  <div class="mb-3">
+    <label class="form-label">Tenant Name</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="tenantName"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Owner Full Name</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="ownerName"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      [(ngModel)]="email"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      [(ngModel)]="password"
+    />
+  </div>
+
+  <button
+    class="btn btn-primary w-100"
+    (click)="register()"
+    [disabled]="loading"
+  >
+    {{ loading ? 'Registering...' : 'Register' }}
+  </button>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+  }
+</div>
