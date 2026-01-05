@@ -1,53 +1,84 @@
-<div class="container mt-5" style="max-width: 500px;">
-  <h3 class="mb-4">Register as Owner</h3>
+<div class="jira-login-wrapper">
 
-  <div class="mb-3">
-    <label class="form-label">Tenant Name</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="tenantName"
-    />
-  </div>
+  <!-- LEFT PANEL -->
+  <div class="jira-left">
 
-  <div class="mb-3">
-    <label class="form-label">Owner Full Name</label>
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="ownerName"
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      [(ngModel)]="email"
-    />
-  </div>
-
-  <div class="mb-3">
-    <label class="form-label">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      [(ngModel)]="password"
-    />
-  </div>
-
-  <button
-    class="btn btn-primary w-100"
-    (click)="register()"
-    [disabled]="loading"
-  >
-    {{ loading ? 'Registering...' : 'Register' }}
-  </button>
-
-  @if (errorMessage) {
-    <div class="alert alert-danger mt-3">
-      {{ errorMessage }}
+    <!-- Brand -->
+    <div class="jira-brand">
+      <img src="/branding/jira-logo.svg" alt="Logo" />
+      <span>Project Manager</span>
     </div>
-  }
+
+    <!-- Heading -->
+    <h1>Create your workspace</h1>
+    <p class="jira-subtitle">
+      Set up your team’s project space in minutes.
+    </p>
+
+    <!-- FORM -->
+    <form (ngSubmit)="register()" class="jira-form">
+
+      <label>Workspace name</label>
+      <input
+        type="text"
+        name="tenantName"
+        placeholder="e.g. Acme Inc"
+        [(ngModel)]="tenantName"
+        required
+      />
+
+      <label>Your full name</label>
+      <input
+        type="text"
+        name="ownerName"
+        placeholder="e.g. John Doe"
+        [(ngModel)]="ownerName"
+        required
+      />
+
+      <label>Work email</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="you@company.com"
+        [(ngModel)]="email"
+        required
+      />
+
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Create a secure password"
+        [(ngModel)]="password"
+        required
+      />
+
+      <button
+        type="submit"
+        class="btn-primary"
+        [disabled]="loading"
+      >
+        {{ loading ? 'Creating workspace…' : 'Create workspace' }}
+      </button>
+    </form>
+
+    <!-- ERROR -->
+    @if (errorMessage) {
+      <div class="error-box">
+        {{ errorMessage }}
+      </div>
+    }
+
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="jira-right">
+    <img
+      src="/branding/jira-preview.svg"
+      alt="Preview"
+      class="preview-img"
+    />
+  </div>
+
 </div>
