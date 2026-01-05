@@ -1,9 +1,26 @@
-<aside class="jira-sidebar">
+<aside class="jira-sidebar" [class.collapsed]="isCollapsed">
 
-  <!-- Brand -->
+  <!-- Brand + Toggle -->
   <div class="sidebar-brand">
     <img src="/branding/jira-logo.svg" alt="Logo" />
-    <span>Project Manager</span>
+   @if(!isCollapsed)
+   {<span>Project Manager</span>}
+    <button class="collapse-toggle" (click)="toggle()" aria-label="Toggle sidebar">
+    @if (!isCollapsed) {
+      <!-- chevron-left -->
+      <svg viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+      </svg>
+    } @else {
+      <!-- chevron-right -->
+      <svg viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    }
+  </button>
+
   </div>
 
   <!-- Navigation -->
@@ -14,7 +31,13 @@
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
     >
-      Projects
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder-fill" viewBox="0 0 16 16">
+       <path d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a2 2 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3m-8.322.12q.322-.119.684-.12h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981z"/>
+      </svg>
+
+      @if (!isCollapsed) {
+        <span class="label">Projects</span>
+      }
     </a>
 
     <a
@@ -22,14 +45,28 @@
       routerLink="/invite"
       routerLinkActive="active"
     >
-      Invite users
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+       <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+       <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+      </svg>
+
+      @if (!isCollapsed) {
+        <span class="label">Invite users</span>
+      }
     </a>
   </nav>
 
   <!-- Footer -->
   <div class="sidebar-footer">
     <button class="logout-btn" (click)="logout()">
-      Logout
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+         <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+         <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+      </svg>
+
+      @if (!isCollapsed) {
+        <span class="label">Logout</span>
+      }
     </button>
   </div>
 

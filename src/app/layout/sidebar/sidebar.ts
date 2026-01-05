@@ -10,8 +10,12 @@ import { AuthService } from '../../core/services/auth';
   styleUrls: ['./sidebar.css']
 })
 export class SidebarComponent {
-
+  isCollapsed = false;
   constructor(private authService: AuthService) {}
+  
+  toggle(){
+    this.isCollapsed = !this.isCollapsed;
+  }  
 
   logout() {
     this.authService.logout();

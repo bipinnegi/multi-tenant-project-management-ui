@@ -1,5 +1,6 @@
 .jira-sidebar {
-  width: 240px;
+    position: relative;
+  width: 300px;
   height: 100vh;
   background: #ffffff;
   border-right: 1px solid #dfe1e6;
@@ -13,9 +14,10 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 16px;
+  padding: 16px 18px;
   font-weight: 600;
   color: #172b4d;
+  border-bottom: 1px solid #f0f1f2;
 }
 
 .sidebar-brand img {
@@ -24,22 +26,30 @@
 
 /* Navigation */
 .sidebar-nav {
-  padding: 8px;
+  padding: 12px 8px;
 }
 
 .nav-item {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   padding: 10px 14px;
   margin-bottom: 4px;
   border-radius: 6px;
   color: #172b4d;
   text-decoration: none;
   cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-item .icon {
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
 }
 
 .nav-item:hover {
-  background: #e9f2ff;
-  color: #0052cc;
+  background: #f4f5f7;
 }
 
 .nav-item.active {
@@ -51,14 +61,87 @@
 /* Footer */
 .sidebar-footer {
   margin-top: auto;
-  padding: 16px;
+  padding: 12px;
+  border-top: 1px solid #f0f1f2;
 }
 
 .logout-btn {
   width: 100%;
   background: none;
-  border: none;
+  border: 1px solid rgb(192, 187, 187);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 6px;
   color: #de350b;
   cursor: pointer;
   font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: #ffebe6;
+}
+
+/* Collapse support */
+.jira-sidebar.collapsed {
+  width: 72px;
+}
+
+.jira-sidebar.collapsed .label {
+  display: none;
+}
+
+.jira-sidebar.collapsed .sidebar-brand {
+  justify-content: space-between;
+}
+
+.collapse-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.collapse-btn:hover {
+  background: #ebecf0;
+}
+
+.collapse-icon {
+  width: 25px;
+  height: 25px;
+  fill: #42526e;
+}
+
+
+.jira-sidebar.collapsed .nav-item {
+  justify-content: center;
+}
+/* Toggle button */
+.collapse-toggle {
+  position: absolute;
+  top: 40%;
+  right: -14px;              /* sits on the edge */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #dfe1e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.collapse-toggle svg {
+  width: 14px;
+  height: 14px;
+  fill: #42526e;
+}
+
+.collapse-toggle:hover {
+  background: #ebecf0;
 }
