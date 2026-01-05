@@ -1,0 +1,36 @@
+<aside class="jira-sidebar">
+
+  <!-- Brand -->
+  <div class="sidebar-brand">
+    <img src="/branding/jira-logo.svg" alt="Logo" />
+    <span>Project Manager</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav">
+    <a
+      class="nav-item"
+      routerLink="/projects"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Projects
+    </a>
+
+    <a
+      class="nav-item"
+      routerLink="/invite"
+      routerLinkActive="active"
+    >
+      Invite users
+    </a>
+  </nav>
+
+  <!-- Footer -->
+  <div class="sidebar-footer">
+    <button class="logout-btn" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+</aside>

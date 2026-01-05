@@ -1,0 +1,64 @@
+.jira-sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #ffffff;
+  border-right: 1px solid #dfe1e6;
+  display: flex;
+  flex-direction: column;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* Brand */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  font-weight: 600;
+  color: #172b4d;
+}
+
+.sidebar-brand img {
+  width: 28px;
+}
+
+/* Navigation */
+.sidebar-nav {
+  padding: 8px;
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 14px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  color: #172b4d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: #e9f2ff;
+  color: #0052cc;
+}
+
+.nav-item.active {
+  background: #e9f2ff;
+  color: #0052cc;
+  font-weight: 500;
+}
+
+/* Footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px;
+}
+
+.logout-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #de350b;
+  cursor: pointer;
+  font-size: 14px;
+}
