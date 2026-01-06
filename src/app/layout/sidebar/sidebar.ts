@@ -1,21 +1,31 @@
-import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component,OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.html',
   styleUrls: ['./sidebar.css']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit  {
+    isOwner = false;
   isCollapsed = false;
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) 
+  {}
   
+  ngOnInit() {
+    this.authService.role$.subscribe(role => {
+      this.isOwner = role === 'Owner';
+    });
+  }
+
   toggle(){
     this.isCollapsed = !this.isCollapsed;
   }  
+  
 
   logout() {
     this.authService.logout();

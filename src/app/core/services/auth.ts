@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private apiUrl= 'https://localhost:7232/api/auth';
+  
+private roleSubject = new BehaviorSubject<string | null>(this.getUserRole());
+  role$ = this.roleSubject.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -20,6 +24,8 @@ export class AuthService {
   localStorage.setItem('token', auth.token);
   localStorage.setItem('role', auth.role);
   localStorage.setItem('tenantId', auth.tenantId);
+
+  this.roleSubject.next(auth.role);
 }
 
 
@@ -42,6 +48,9 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('tenantId');
+    this.roleSubject.next(null);
     this.router.navigate(['/login']);
   }
 

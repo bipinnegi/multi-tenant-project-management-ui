@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   selector: 'app-login',
@@ -12,22 +12,23 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./login.css']
 })
 export class LoginComponent {
+
   email = '';
   password = '';
   error = '';
 
   constructor(
-    private http: HttpClient,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   login() {
-    this.http.post<any>('https://localhost:7232/api/auth/login', {
-      email: this.email,
-      password: this.password
-    }).subscribe({
+    this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-        localStorage.setItem('token', response.token);
+        
+        this.authService.setAuthData(response);
+
+        // Navigate AFTER auth state update
         this.router.navigate(['/projects']);
       },
       error: () => {
