@@ -1,63 +1,68 @@
-@if (isOwner) {
-  <div class="card mb-4">
-    <div class="card-body">
-      <h5 class="card-title">Create Project</h5>
+<div class="projects-page">
 
-      <div class="mb-2">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Project name"
-          [(ngModel)]="name"
-        />
-      </div>
+  <!-- ===== Create Project (Owner only) ===== -->
+  @if (isOwner) {
+    <div class="create-project-card">
+      <h4>Create project</h4>
 
-      <div class="mb-2">
-        <textarea
-          class="form-control"
-          placeholder="Project description"
-          [(ngModel)]="description">
-        </textarea>
-      </div>
+      <input
+        type="text"
+        class="input"
+        placeholder="Project name"
+        [(ngModel)]="name"
+      />
 
-      <button class="btn btn-primary" (click)="createProject()">
-        Create
+      <textarea
+        class="input textarea"
+        placeholder="Project description"
+        [(ngModel)]="description">
+      </textarea>
+
+      <button class="primary-btn" (click)="createProject()">
+        Create project
       </button>
     </div>
-  </div>
-}
+  }
 
+  <!-- ===== Projects Header ===== -->
+  
 
-<div class="container mt-4">
-  <h3>Projects</h3>
-
+  <!-- ===== Projects Grid ===== -->
   @if (projects$ | async; as projects) {
 
     @if (projects.length === 0) {
-      <div class="alert alert-info">
-        No projects found.
+      <div class="empty-state">
+        No projects yet.
       </div>
     }
 
     @if (projects.length > 0) {
-      <div class="row">
+      <div class="projects-grid">
         @for (project of projects; track project.id) {
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">{{ project.name }}</h5>
-                <p class="card-text">{{ project.description }}</p>
-                <a class="btn btn-outline-primary btn-sm" [routerLink]="['/projects', project.id, 'tasks']">Open Project</a>
-              </div>
+          <div class="project-card">
+
+            <div class="project-card-body">
+              <h5>{{ project.name }}</h5>
+              <p>{{ project.description }}</p>
             </div>
+
+            <div class="project-card-footer">
+              <a
+                class="open-btn"
+                [routerLink]="['/projects', project.id, 'tasks']">
+                Open project →
+              </a>
+            </div>
+
           </div>
         }
       </div>
     }
 
   } @else {
-    <div class="text-muted">
-      Loading projects...
+    <div class="loading">
+      Loading projects…
     </div>
   }
+
 </div>

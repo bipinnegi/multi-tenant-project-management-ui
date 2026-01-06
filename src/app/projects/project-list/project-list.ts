@@ -18,6 +18,7 @@ export class ProjectListComponent {
 
   projects$!: Observable<any[]>;
   name='';
+  
   description= '';
 
   isOwner = false;
