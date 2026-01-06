@@ -34,6 +34,14 @@ export const routes: Routes = [
           import('./projects/project-list/project-list')
             .then(c => c.ProjectListComponent)
       },
+
+      {
+         path: 'status-overview',
+         loadComponent: () =>
+           import('./status-overview/status-overview')
+            .then(c => c.StatusOverviewComponent)
+},
+
       {
         path: 'projects/:projectId/tasks',
         loadComponent: () =>

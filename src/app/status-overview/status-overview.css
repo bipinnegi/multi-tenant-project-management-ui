@@ -1,0 +1,99 @@
+.overview-page {
+  padding: 24px;
+  max-width: 1200px;
+}
+
+.overview-card,
+.activity-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.overview-header h3 {
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b778c;
+}
+
+.link {
+  color: #0052cc;
+  text-decoration: none;
+}
+
+.overview-content {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 40px;
+}
+
+/* Donut placeholder */
+.donut-placeholder {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #4c9aff 0deg 120deg,
+    #36b37e 120deg 360deg
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-center {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  padding-top: 35px;
+}
+
+.donut-center strong {
+  font-size: 28px;
+  display: block;
+}
+
+.donut-center span {
+  font-size: 13px;
+  color: #6b778c;
+}
+
+.legend {
+  font-size: 14px;
+}
+
+.legend-item {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.dot.in-progress {
+  background: #4c9aff;
+}
+
+.dot.todo {
+  background: #36b37e;
+}
+
+/* Activity */
+.activity-empty {
+  margin-top: 12px;
+  color: #97a0af;
+  font-size: 14px;
+}

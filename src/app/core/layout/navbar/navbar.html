@@ -1,16 +1,28 @@
 @if (isLoggedIn) {
   <nav class="navbar">
 
-    <!-- Left: Context / Page title -->
-     
-    <a class="navbar-brand" routerLink="/projects">
-      Projects
-    </a>
+    <!-- Left -->
+    <div class="navbar-left">
+      <a class="navbar-link"
+         routerLink="/status-overview"
+         routerLinkActive="active">
+        Status overview
+      </a>
+      
+      <a
+    routerLink="/projects"
+    class="navbar-link"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Projects
+  </a>
 
-    <!-- Right: User actions -->
+      
+    </div>
+
+    <!-- Right -->
     <div class="navbar-actions">
-
-      <!-- User info (avatar + role) -->
       <div class="user-menu">
         <div class="user-avatar">
           {{ isOwner ? 'O' : 'M' }}
@@ -22,7 +34,6 @@
 
         <span class="user-chevron">▾</span>
       </div>
-
     </div>
 
   </nav>
