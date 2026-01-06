@@ -29,7 +29,7 @@ export class LoginComponent {
         this.authService.setAuthData(response);
 
         // Navigate AFTER auth state update
-        this.router.navigate(['/projects']);
+        this.router.navigate(['/status-overview']);
       },
       error: () => {
         this.error = 'Invalid email or password';

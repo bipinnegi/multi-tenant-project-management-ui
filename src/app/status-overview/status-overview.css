@@ -12,6 +12,12 @@
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
 
+.status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .overview-header h3 {
   margin: 0;
 }
@@ -84,11 +90,14 @@
 }
 
 .dot.in-progress {
-  background: #4c9aff;
+  background: #f59b1e;
 }
 
 .dot.todo {
-  background: #36b37e;
+  background: rgb(0, 110, 255);
+}
+.dot.done{
+    background: #36b37e;
 }
 
 /* Activity */
