@@ -1,20 +1,28 @@
 @if (isLoggedIn) {
-  <nav class="navbar navbar-dark bg-dark px-3">
+  <nav class="navbar">
 
+    <!-- Left: Context / Page title -->
+     
     <a class="navbar-brand" routerLink="/projects">
-      Project Manager
+      Projects
     </a>
 
-    <div class="ms-auto">
-      @if (isOwner) {
-        <a class="btn btn-outline-light me-2" routerLink="/invite">
-          Invite User
-        </a>
-      }
+    <!-- Right: User actions -->
+    <div class="navbar-actions">
 
-      <button class="btn btn-danger btn-sm" (click)="logout()">
-        Logout
-      </button>
+      <!-- User info (avatar + role) -->
+      <div class="user-menu">
+        <div class="user-avatar">
+          {{ isOwner ? 'O' : 'M' }}
+        </div>
+
+        <span class="user-role">
+          {{ isOwner ? 'Owner' : 'Member' }}
+        </span>
+
+        <span class="user-chevron">▾</span>
+      </div>
+
     </div>
 
   </nav>

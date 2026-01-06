@@ -1,0 +1,85 @@
+/* ===== Base Navbar ===== */
+.navbar {
+  height: 56px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #DFE1E6;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* ===== Brand / Context ===== */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px solid;
+  font-size: 18px;
+  font-weight: 600;
+  color: #172B4D;
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  text-decoration: none;
+  color: #0052CC;
+}
+
+
+/* ===== Right Section ===== */
+.navbar-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ===== User Menu ===== */
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  transition: background-color 0.15s ease;
+}
+
+.user-menu:hover {
+  background-color: #F4F5F7;
+}
+
+/* Avatar circle */
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+
+  background-color: #0052CC;
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Role label */
+.user-role {
+  font-size: 16px;
+  color: #42526E;
+}
+
+/* Chevron */
+.user-chevron {
+  font-size: 16px;
+  color: #6B778C;
+}
+

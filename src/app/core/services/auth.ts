@@ -3,31 +3,34 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl= 'https://localhost:7232/api/auth';
-  
-private roleSubject = new BehaviorSubject<string | null>(this.getUserRole());
+
+  private apiUrl = 'https://localhost:7232/api/auth';
+
+  private roleSubject = new BehaviorSubject<string | null>(
+    localStorage.getItem('role')
+  );
+
   role$ = this.roleSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private router: Router
-  ){}
-  setAuthData(auth: {
-  token: string;
-  role: string;
-  tenantId: string;
-}) {
-  localStorage.setItem('token', auth.token);
-  localStorage.setItem('role', auth.role);
-  localStorage.setItem('tenantId', auth.tenantId);
+  ) {}
 
-  this.roleSubject.next(auth.role);
-}
+  setAuthData(auth: { token: string; role: string; tenantId: string }) {
+    localStorage.setItem('token', auth.token);
+    localStorage.setItem('role', auth.role);
+    localStorage.setItem('tenantId', auth.tenantId);
 
+    // 🔥 single source of truth
+    this.roleSubject.next(auth.role);
+  }
+
+  login(email: string, password: string) {
+    return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
+  }
 
   registerOwner(data: {
     tenantName: string;
@@ -35,38 +38,25 @@ private roleSubject = new BehaviorSubject<string | null>(this.getUserRole());
     ownerEmail: string;
     password: string;
   }) {
-       return this.http.post<any>(
-         `${this.apiUrl}/register`,
-         data
-          );
+    return this.http.post<any>(`${this.apiUrl}/register`, data);
   }
 
-
-  login(email: string, password:string){
-    return this.http.post<any>(`${this.apiUrl}/login`,{email, password});
-  }
-
-  logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    localStorage.removeItem('tenantId');
+  logout() {
+    localStorage.clear();
     this.roleSubject.next(null);
     this.router.navigate(['/login']);
   }
 
-  getToken(): string | null{
-    return localStorage.getItem('token');
+  isLoggedIn(): boolean {
+    return !!this.roleSubject.value;
   }
 
-  isLoggedIn(): boolean{
-    return !!this.getToken();
+  getUserRole(): string | null {
+    return this.roleSubject.value;
   }
-
-  getUserRole(): string | null{
-    const token = localStorage.getItem('token');
-    if(!token) return null;
-
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
-  }
+  getToken(): string | null {
+  return localStorage.getItem('token');
 }
+
+}
+

@@ -1,41 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './navbar.html'
-  
+  templateUrl: './navbar.html',
+  styleUrls: ['./navbar.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
 
   isOwner = false;
   isLoggedIn = false;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  private sub!: Subscription;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    // Run on every route change
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        this.updateAuthState();
-      }
+    this.sub = this.authService.role$.subscribe(role => {
+      this.isLoggedIn = !!role;
+      this.isOwner = role === 'Owner';
     });
   }
 
-  updateAuthState() {
-    const role = this.authService.getUserRole();
-    this.isLoggedIn = !!role;
-    this.isOwner = role === 'Owner';
-  }
-
-  logout() {
-    this.authService.logout();
-    this.updateAuthState();
+  ngOnDestroy(): void {
+    this.sub?.unsubscribe();
   }
 }
