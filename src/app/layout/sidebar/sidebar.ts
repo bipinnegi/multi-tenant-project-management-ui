@@ -23,13 +23,8 @@ export class SidebarComponent implements OnInit  {
   this.showCreateModal = true;
  }
 
- onModalClosed(created: boolean) {
+ onModalClosed() {
   this.showCreateModal = false;
-
-  if (created) {
-    // Simple refresh approach (safe)
-    window.location.reload();
-  }
  }
   
   ngOnInit() {

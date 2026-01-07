@@ -32,6 +32,7 @@ export class CreateProjectModalComponent {
     this.projectService.createProject(this.name, this.description).subscribe({
       next: () => {
         this.loading = false;
+        this.projectService.notifyProjectChanged();
         this.close(true);
       },
       error: () => {

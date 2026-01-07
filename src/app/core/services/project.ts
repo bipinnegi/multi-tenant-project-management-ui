@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +9,13 @@ export class ProjectService {
   private apiUrl = 'https://localhost:7232/api/projects';
 
   constructor(private http: HttpClient){}
+
+  private projectChangedSubject = new BehaviorSubject<void>(undefined);
+ projectChanged$ = this.projectChangedSubject.asObservable();
+
+ notifyProjectChanged() {
+  this.projectChangedSubject.next();
+ }
 
   getProjects(): Observable<any[]>{
     return this.http.get<any[]>(this.apiUrl);

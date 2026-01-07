@@ -5,6 +5,9 @@ import { ProjectService } from '../../core/services/project';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../core/services/auth';
 import { RouterModule } from '@angular/router';
+import { OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-project-list',
@@ -14,7 +17,8 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./project-list.css']
   
 })
-export class ProjectListComponent {
+export class ProjectListComponent implements OnInit, OnDestroy {
+ private sub!: Subscription;
 
   projects$!: Observable<any[]>;
   name='';
@@ -25,8 +29,22 @@ export class ProjectListComponent {
 
   constructor(private projectService: ProjectService, private authService: AuthService, private cdr: ChangeDetectorRef) {
     this.isOwner = this.authService.getUserRole() === 'Owner';
-    this.loadProjects();
+    
   }
+  
+  ngOnInit() {
+  this.loadProjects();
+
+  this.sub = this.projectService.projectChanged$.subscribe(() => {
+    this.loadProjects();
+    this.cdr.detectChanges();
+  });
+  }
+
+  ngOnDestroy() {
+  this.sub?.unsubscribe();
+}
+
 
   loadProjects(){
     this.projects$ = this.projectService.getProjects();
