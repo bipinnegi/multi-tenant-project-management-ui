@@ -17,7 +17,7 @@ export class InviteUserComponent {
 
   email = '';
   role = 'Member';
-
+  inviteLink ='';
   successMessage = '';
   errorMessage = '';
 
@@ -36,24 +36,31 @@ export class InviteUserComponent {
       return;
     }
 
-    if (this.loading) return; // ✅ Prevent double click
+     this.invitationService.sendInvitation(this.email, this.role).subscribe({
+    next: (res: any) => {
+      const token = res.token;
 
-    this.loading = true;
-    this.successMessage = '';
-    this.errorMessage = '';
+      this.inviteLink =
+        `${window.location.origin}/accept-invitation?token=${token}`;
 
-    this.invitationService.sendInvitation(this.email, this.role).subscribe({
-      next: () => {
-        this.successMessage = 'Invitation sent successfully';
-        this.email = '';
-        this.loading = false;
-        this.cdr.detectChanges();
-      },
-      error: () => {
-        this.errorMessage = 'Failed to send invitation';
-        this.loading = false;
-        this.cdr.detectChanges();
-      }
-    });
+      this.successMessage = 'Invitation created successfully';
+      this.errorMessage = '';
+      this.email = '';
+      this.loading = false;
+      this.cdr.detectChanges();    
+    },
+    error: () => {
+      this.errorMessage = 'Failed to send invitation';
+      this.successMessage = '';
+      this.loading = false;
+      this.cdr.detectChanges();
+    }
+  });
   }
+  copyLink() {
+  navigator.clipboard.writeText(this.inviteLink);
+  }
+ 
 }
+
+

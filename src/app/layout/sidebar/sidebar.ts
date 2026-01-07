@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
 import { CommonModule } from '@angular/common';
 import { CreateProjectModalComponent } from '../../projects/create-project-modal/create-project-modal';
