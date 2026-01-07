@@ -1,0 +1,28 @@
+<div class="modal-backdrop" (click)="close()"></div>
+
+<div class="modal-card">
+  <h4>Create project</h4>
+
+  <input
+    class="input"
+    placeholder="Project name"
+    [(ngModel)]="name"
+  />
+
+  <textarea
+    class="input textarea"
+    placeholder="Project description"
+    [(ngModel)]="description">
+  </textarea>
+
+  <div class="modal-actions">
+    <button class="btn cancel" (click)="close()">Cancel</button>
+    <button class="btn primary" (click)="create()" [disabled]="loading">
+      {{ loading ? 'Creating…' : 'Create' }}
+    </button>
+  </div>
+
+  @if (error) {
+    <div class="error">{{ error }}</div>
+  }
+</div>

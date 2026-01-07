@@ -1,0 +1,64 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 30, 66, 0.45);
+  z-index: 1000;
+}
+
+.modal-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  width: 420px;
+  padding: 20px;
+  border-radius: 8px;
+  z-index: 1001;
+  box-shadow: 0 10px 30px rgba(9, 30, 66, 0.25);
+}
+
+.modal-card h4 {
+  margin-bottom: 12px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #DFE1E6;
+  margin-bottom: 10px;
+}
+
+.textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.btn {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.cancel {
+  background: #F4F5F7;
+}
+
+.btn.primary {
+  background: #0052CC;
+  color: #ffffff;
+}
+
+.error {
+  margin-top: 10px;
+  color: #DE350B;
+  font-size: 13px;
+}

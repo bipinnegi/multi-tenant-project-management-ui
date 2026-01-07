@@ -33,29 +33,6 @@ export class ProjectListComponent {
     
   }
 
-  createProject() {
-  if (!this.name || !this.description) {
-    return;
-  }
-
-  this.projectService
-    .createProject(this.name, this.description)
-    .subscribe({
-      next: () => {
-        // reload list
-        this.loadProjects();
-
-        // reset form
-        this.name = '';
-        this.description = '';
-
-        // 🔥 force UI update
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.error('Failed to create project', err);
-      }
-    });
-}
+  
 
 }

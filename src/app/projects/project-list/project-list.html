@@ -1,32 +1,5 @@
 <div class="projects-page">
 
-  <!-- ===== Create Project (Owner only) ===== -->
-  @if (isOwner) {
-    <div class="create-project-card">
-      <h4>Create project</h4>
-
-      <input
-        type="text"
-        class="input"
-        placeholder="Project name"
-        [(ngModel)]="name"
-      />
-
-      <textarea
-        class="input textarea"
-        placeholder="Project description"
-        [(ngModel)]="description">
-      </textarea>
-
-      <button class="primary-btn" (click)="createProject()">
-        Create project
-      </button>
-    </div>
-  }
-
-  <!-- ===== Projects Header ===== -->
-  
-
   <!-- ===== Projects Grid ===== -->
   @if (projects$ | async; as projects) {
 
