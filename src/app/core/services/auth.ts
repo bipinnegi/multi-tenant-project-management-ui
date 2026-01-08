@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private apiUrl = 'https://localhost:7232/api/auth';
+  private apiUrl = `${environment.apiBaseUrl}/api/auth`;
 
   private roleSubject = new BehaviorSubject<string | null>(
     localStorage.getItem('role')
