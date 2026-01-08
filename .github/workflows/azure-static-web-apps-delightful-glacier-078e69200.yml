@@ -19,9 +19,9 @@ jobs:
        contents: read
     steps:
       - uses: actions/checkout@v3
-       with:
-        persist-credentials: false
-        lfs: false
+        with:
+         persist-credentials: false
+         lfs: false
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Get Id Token
