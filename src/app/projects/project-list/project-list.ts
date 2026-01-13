@@ -51,6 +51,31 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     
   }
 
+  deleteProject(projectId: string, event: Event) {
+  event.stopPropagation();
+  event.preventDefault();
+
+  const confirmed = confirm(
+    'Are you sure you want to delete this project? This action cannot be undone.'
+  );
+
+  if (!confirmed) return;
+
+  this.projectService.deleteProject(projectId).subscribe({
+    next: () => {
+      // 🔥 notify shared state
+      this.projectService.notifyProjectChanged();
+      this.cdr.detectChanges();
+    },
+    error: (err) => {
+      console.error('Failed to delete project', err);
+      alert('Failed to delete project');
+      this.cdr.detectChanges();
+    }
+  });
+}
+
+
   
 
 }

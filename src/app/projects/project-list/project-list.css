@@ -180,3 +180,23 @@
 .open-btn:hover {
   transform: translateX(2px);
 }
+
+.project-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: #de350b;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  border: 1px solid red;
+  border-radius: 10px;
+  background-color: #de350b66;
+}

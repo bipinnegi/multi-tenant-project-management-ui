@@ -14,6 +14,10 @@ export class ProjectService {
   private projectChangedSubject = new BehaviorSubject<void>(undefined);
  projectChanged$ = this.projectChangedSubject.asObservable();
 
+ deleteProject(projectId: string) {
+  return this.http.delete(`${this.apiUrl}/${projectId}`);
+}
+
  notifyProjectChanged() {
   this.projectChangedSubject.next();
  }
