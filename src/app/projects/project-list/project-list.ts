@@ -27,6 +27,11 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   isOwner = false;
 
+  showDeleteModal = false;
+ projectToDeleteId: string | null = null;
+ projectToDeleteName = '';
+
+
   constructor(private projectService: ProjectService, private authService: AuthService, private cdr: ChangeDetectorRef) {
     this.isOwner = this.authService.getUserRole() === 'Owner';
     
@@ -51,20 +56,29 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     
   }
 
-  deleteProject(projectId: string, event: Event) {
+  openDeleteModal(projectId: string, projectName: string, event: Event) {
   event.stopPropagation();
   event.preventDefault();
 
-  const confirmed = confirm(
-    'Are you sure you want to delete this project? This action cannot be undone.'
-  );
+  this.projectToDeleteId = projectId;
+  this.projectToDeleteName = projectName;
+  this.showDeleteModal = true;
+}
 
-  if (!confirmed) return;
+closeDeleteModal() {
+  this.showDeleteModal = false;
+  this.projectToDeleteId = null;
+  this.projectToDeleteName = '';
+  this.cdr.detectChanges();
+}
 
-  this.projectService.deleteProject(projectId).subscribe({
+confirmDeleteProject() {
+  if (!this.projectToDeleteId) return;
+
+  this.projectService.deleteProject(this.projectToDeleteId).subscribe({
     next: () => {
-      // 🔥 notify shared state
       this.projectService.notifyProjectChanged();
+      this.closeDeleteModal();
       this.cdr.detectChanges();
     },
     error: (err) => {
@@ -74,6 +88,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     }
   });
 }
+
 
 
   
