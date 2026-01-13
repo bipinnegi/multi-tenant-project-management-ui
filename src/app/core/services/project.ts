@@ -30,6 +30,13 @@ export class ProjectService {
     return this.http.post(this.apiUrl, {name, description });
   }
 
+  deleteTask(projectId: string, taskId: string) {
+  return this.http.delete(
+    `${this.apiUrl}/${projectId}/tasks/${taskId}`
+  );
+}
+
+
   getTasks(projectId: string) {
   return this.http.get<any[]>(
     `${this.apiUrl}/${projectId}/tasks`

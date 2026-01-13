@@ -24,6 +24,9 @@ export class TaskListComponent {
 
   newTaskTitle = '';
   isOwner = false;
+  showDeleteModal = false;
+ taskToDelete: any = null;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -96,6 +99,38 @@ export class TaskListComponent {
       return status;
    }
   }
+
+  openDeleteModal(task: any) {
+  this.taskToDelete = task;
+  this.showDeleteModal = true;
+}
+
+closeDeleteModal() {
+  this.showDeleteModal = false;
+  this.taskToDelete = null;
+}
+
+confirmDelete() {
+  if (!this.taskToDelete) return;
+
+  this.projectService
+    .deleteTask(this.projectId, this.taskToDelete.id)
+    .subscribe({
+      next: () => {
+        // ✅ remove from local state
+        this.tasks = this.tasks.filter(
+          t => t.id !== this.taskToDelete.id
+        );
+
+        this.closeDeleteModal();
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Failed to delete task', err);
+      }
+    });
+}
+
 
 
 }

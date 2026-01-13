@@ -30,9 +30,11 @@
   }
 
   <!-- TASK LIST -->
-  @for (task of tasks; track task.id) {
-    <div class="card mb-2">
-      <div class="card-body">
+ @for (task of tasks; track task.id) {
+  <div class="card mb-2">
+    <div class="card-body d-flex justify-content-between align-items-start">
+
+      <div>
         <strong>{{ task.title }}</strong>
 
         <div class="mt-2">
@@ -48,7 +50,7 @@
             class="form-select mt-2"
             (change)="updateStatus(task.id, $any($event.target).value)"
           >
-            <option value="" disabled>
+            <option value="" disabled selected>
               Change status
             </option>
             <option value="Todo">Todo</option>
@@ -57,6 +59,40 @@
           </select>
         }
       </div>
+
+      <!-- OWNER ONLY: DELETE -->
+      @if (isOwner) {
+        <button
+          class="btn btn-sm btn-outline-danger"
+          (click)="openDeleteModal(task)">
+          Delete
+        </button>
+      }
     </div>
-  }
+  </div>
+}
+
 </div>
+
+<!--modal-->
+@if (showDeleteModal) {
+  <div class="modal-backdrop-custom">
+    <div class="modal-card">
+      <h5>Delete task?</h5>
+      <p>
+        Are you sure you want to delete
+        <strong>{{ taskToDelete?.title }}</strong>?
+      </p>
+
+      <div class="modal-actions">
+        <button class="btn btn-secondary" (click)="closeDeleteModal()">
+          Cancel
+        </button>
+        <button class="btn btn-danger" (click)="confirmDelete()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
