@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectService } from '../core/services/project';
 import { forkJoin } from 'rxjs';
 import { ChangeDetectorRef } from '@angular/core';
+import { ActivityService } from '../core/services/activity';
 
 @Component({
   selector: 'app-status-overview',
@@ -22,14 +23,18 @@ export class StatusOverviewComponent implements OnInit {
 
   loading = true;
 
-  constructor(private projectService: ProjectService,  private cdr: ChangeDetectorRef) {}
+  activities: any[]= [];
+  activityLoading =true;
+
+  constructor(private projectService: ProjectService, private activityService: ActivityService  , private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.loadStatusData();
+    this.loadRecentActivity();
   }
 
   loadStatusData() {
-    this.projectService.getProjects().subscribe(projects => {
+      this.projectService.getProjects().subscribe(projects => {
 
       if (projects.length === 0) {
         this.loading = false;
@@ -55,9 +60,26 @@ export class StatusOverviewComponent implements OnInit {
         this.cdr.detectChanges();
 
       });
-    });
-  }
+     });
+    }
 
+    loadRecentActivity(){
+        this.activityLoading=true;
+
+        this.activityService.getRecent().subscribe({
+            next:(data)=>{
+                this.activities=data;
+                this.activityLoading=false;
+                this.cdr.detectChanges();
+            },
+            error:(err)=>{
+                console.error('faildes to load activity', err);
+                this.activityLoading=false;
+            }
+            
+        });
+    }
+    
   // SVG math helpers
   get todoPercent() {
     return this.total ? (this.todo / this.total) * 100 : 0;
@@ -70,4 +92,6 @@ export class StatusOverviewComponent implements OnInit {
   get donePercent() {
     return this.total ? (this.done / this.total) * 100 : 0;
   }
+  
+
 }

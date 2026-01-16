@@ -98,9 +98,37 @@
       Stay up to date with what's happening across the space.
     </p>
 
+    <div class="activity-content">
+
+  @if (activityLoading) {
+    <div class="activity-loading">
+      Loading recent activity...
+    </div>
+  }
+
+  @if (!activityLoading && activities.length === 0) {
     <div class="activity-empty">
       No recent activity yet.
     </div>
+  }
+
+  @if (!activityLoading && activities.length > 0) {
+     <ul class="activity-list">
+      @for (activity of activities; track activity.id) {
+        <li class="activity-item">
+          <div class="message">
+            {{ activity.message }}
+          </div>
+          <div class="time">
+            {{ activity.createdAt | date:'short' }} UTC
+          </div>
+        </li>
+      }
+     </ul>
+    }
+
+   </div>
+
   </div>
 
 </div>
