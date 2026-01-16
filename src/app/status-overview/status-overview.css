@@ -107,3 +107,67 @@
   color: #97a0af;
   font-size: 14px;
 }
+
+/* =========================
+   Recent Activity Timeline
+========================= */
+
+.activity-content {
+  margin-top: 12px;
+}
+
+.activity-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-item {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.activity-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 18px;
+  width: 2px;
+  height: calc(100% - 18px);
+  background-color: #e6e8eb;
+}
+
+.activity-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #0052cc;
+  border-radius: 50%;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.activity-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.message {
+  font-size: 14px;
+  font-weight: 500;
+  color: #172b4d;
+}
+
+.time {
+  font-size: 12px;
+  color: #6b778c;
+  margin-top: 2px;
+}
+
+.activity-loading,
+.activity-empty {
+  font-size: 14px;
+  color: #6b778c;
+  padding: 12px 0;
+}

@@ -116,13 +116,17 @@
      <ul class="activity-list">
       @for (activity of activities; track activity.id) {
         <li class="activity-item">
-          <div class="message">
-            {{ activity.message }}
-          </div>
-          <div class="time">
-            {{ activity.createdAt | date:'short' }} UTC
-          </div>
-        </li>
+         <span class="activity-dot"></span>
+
+         <div class="activity-body">
+           <div class="message">
+             {{ activity.message }}
+           </div>
+           <div class="time">
+             {{ activity.createdAt | date:'short' }} UTC
+           </div>
+         </div>
+       </li>
       }
      </ul>
     }
