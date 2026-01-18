@@ -171,3 +171,50 @@
   color: #6b778c;
   padding: 12px 0;
 }
+
+/* ===== Mobile Status Overview Layout ===== */
+@media (max-width: 768px) {
+
+  .overview-page {
+    padding: 12px;
+  }
+
+  .overview-card,
+  .activity-card {
+    padding: 16px;
+  }
+
+  .overview-content {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  /* Donut chart scaling */
+  .donut {
+    width: 160px;
+    height: 160px;
+  }
+
+  .legend {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .legend-item {
+    font-size: 14px;
+  }
+
+  /* Activity section spacing */
+  .activity-item {
+    padding-bottom: 20px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+
+  .time {
+    font-size: 12px;
+  }
+}

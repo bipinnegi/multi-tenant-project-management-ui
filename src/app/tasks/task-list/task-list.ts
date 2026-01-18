@@ -117,7 +117,7 @@ confirmDelete() {
     .deleteTask(this.projectId, this.taskToDelete.id)
     .subscribe({
       next: () => {
-        // ✅ remove from local state
+        // remove from local state
         this.tasks = this.tasks.filter(
           t => t.id !== this.taskToDelete.id
         );
