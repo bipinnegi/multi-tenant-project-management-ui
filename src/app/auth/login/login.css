@@ -107,4 +107,55 @@
   height: auto;
 }
 
+/* ===== Mobile Login Layout ===== */
+@media (max-width: 768px) {
+
+  .jira-login-wrapper {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* Hide right preview panel */
+  .jira-right {
+    display: none;
+  }
+
+  /* Full-width left panel */
+  .jira-left {
+    width: 100%;
+    padding: 32px 20px;
+    justify-content: flex-start;
+  }
+
+  .jira-brand {
+    margin-bottom: 24px;
+  }
+
+  .jira-left h1 {
+    font-size: 26px;
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+
+  .jira-form {
+    max-width: 100%;
+  }
+
+  .jira-form input {
+    font-size: 16px; /* prevents mobile zoom */
+    padding: 14px 16px;
+  }
+
+  .btn-primary {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .jira-footer {
+    margin-top: 24px;
+    text-align: center;
+  }
+}
+
 

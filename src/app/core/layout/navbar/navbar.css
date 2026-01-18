@@ -120,7 +120,31 @@
     display: block;
   }
 
+  .navbar {
+    padding: 0 12px;
+    height: 52px;
+  }
+
   .navbar-left {
     gap: 16px;
+  }
+
+  .navbar-link {
+    font-size: 14px;
+    padding: 8px 4px;
+  }
+
+  .navbar-link.active::after {
+    bottom: -10px;
+  }
+
+  .user-role {
+    display: none;
+  }
+
+  .user-avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
   }
 }
