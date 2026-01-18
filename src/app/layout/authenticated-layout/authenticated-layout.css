@@ -14,3 +14,17 @@
   padding: 24px;
   overflow-y: auto;
 }
+
+/* ===== Mobile layout ===== */
+@media (max-width: 768px) {
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 900;
+  }
+}

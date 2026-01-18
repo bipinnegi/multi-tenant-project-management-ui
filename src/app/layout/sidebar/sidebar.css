@@ -145,3 +145,29 @@
 .collapse-toggle:hover {
   background: #ebecf0;
 }
+
+/* ===== Mobile off-canvas sidebar (HOST-BASED) ===== */
+@media (max-width: 768px) {
+  :host {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 300px;
+    z-index: 1000;
+    transition: left 0.25s ease;
+  }
+
+  :host.open {
+    left: 0;
+  }
+
+  .jira-sidebar {
+    height: 100%;
+  }
+
+  .collapse-toggle {
+    display: none;
+  }
+}
+

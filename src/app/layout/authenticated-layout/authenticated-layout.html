@@ -1,10 +1,19 @@
 <div class="app-shell">
+    @if (isSidebarOpen) {
+  <div
+    class="sidebar-backdrop"
+    (click)="closeSidebar()">
+  </div>
+}
+
   <!-- Sidebar -->
-  <app-sidebar></app-sidebar>
+  <app-sidebar
+  [class.open]="isSidebarOpen">
+  </app-sidebar>
 
   <!-- Main area -->
   <div class="main-area">
-    <app-navbar></app-navbar>
+    <app-navbar (menuToggle)="toggleSidebar()"></app-navbar>
 
     <div class="page-content">
       <router-outlet></router-outlet>

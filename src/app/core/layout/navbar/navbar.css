@@ -104,3 +104,23 @@
   font-size: 14px;
   color: #6B778C;
 }
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .navbar-left {
+    gap: 16px;
+  }
+}

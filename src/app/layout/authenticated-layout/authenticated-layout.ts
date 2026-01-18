@@ -10,4 +10,15 @@ import { SidebarComponent } from '../sidebar/sidebar';
   templateUrl: './authenticated-layout.html',
   styleUrls: ['./authenticated-layout.css']
 })
-export class AuthenticatedLayoutComponent {}
+export class AuthenticatedLayoutComponent {
+isSidebarOpen = false;
+
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
+  closeSidebar() {
+    this.isSidebarOpen = false;
+  }
+
+}
