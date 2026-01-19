@@ -269,3 +269,48 @@
 .btn-danger:hover {
   background: #bf2600;
 }
+
+/* ===== Mobile Projects Layout ===== */
+@media (max-width: 768px) {
+
+  .projects-page {
+    padding: 12px;
+  }
+
+  /* Force single column */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .project-card-body {
+    padding: 14px;
+  }
+
+  .project-card-body h5 {
+    font-size: 15px;
+  }
+
+  .project-card-body p {
+    font-size: 13px;
+  }
+
+  /* Footer actions easier to tap */
+  .project-card-footer {
+    padding: 14px;
+  }
+
+  .open-btn {
+    font-size: 14px;
+  }
+
+  .delete-btn {
+    font-size: 16px;
+  }
+
+  /* Modal mobile fit */
+  .modal-card {
+    width: 90%;
+    max-width: 360px;
+  }
+}
