@@ -1,0 +1,40 @@
+<div class="members-page">
+
+  <h2>Company Members</h2>
+  <p class="subtitle">
+    People working under your company workspace.
+  </p>
+
+  @if (members$ | async; as members) {
+
+    @if (members.length === 0) {
+      <div class="empty-state">
+        No members found.
+      </div>
+    }
+
+    @if (members.length > 0) {
+      <div class="members-table">
+        <div class="members-header">
+          <span>Name</span>
+          <span>Email</span>
+          <span>Role</span>
+        </div>
+
+        @for (member of members; track member.id) {
+          <div class="member-row">
+            <span>{{ member.fullName }}</span>
+            <span>{{ member.email }}</span>
+            <span class="role">{{ member.role }}</span>
+          </div>
+        }
+      </div>
+    }
+
+  } @else {
+    <div class="loading">
+      Loading members…
+    </div>
+  }
+
+</div>

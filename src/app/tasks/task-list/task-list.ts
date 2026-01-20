@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { map, Observable } from 'rxjs';
 import { ProjectService } from '../../core/services/project';
 import { AuthService } from '../../core/services/auth';
 import { ChangeDetectorRef } from '@angular/core';

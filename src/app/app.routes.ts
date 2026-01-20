@@ -9,7 +9,7 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
-      import('./auth/login/login').then(c => c.LoginComponent)
+    import('./auth/login/login').then(c => c.LoginComponent)
   },
   {
     path: 'register',
@@ -19,7 +19,7 @@ export const routes: Routes = [
     path: 'accept-invitation',
     loadComponent: () =>
       import('./invitations/accept-invitation/accept-invitation')
-        .then(m => m.AcceptInvitationComponent)
+      .then(m => m.AcceptInvitationComponent)
   },
 
   // 🔐 Authenticated shell
@@ -40,7 +40,7 @@ export const routes: Routes = [
          loadComponent: () =>
            import('./status-overview/status-overview')
             .then(c => c.StatusOverviewComponent)
-},
+      },
 
       {
         path: 'projects/:projectId/tasks',
@@ -48,6 +48,13 @@ export const routes: Routes = [
           import('./tasks/task-list/task-list')
             .then(m => m.TaskListComponent)
       },
+      {
+        path: 'members',
+        loadComponent: () =>
+           import('./members/member-list')
+            .then(m => m.MemberListComponent)
+      },
+
       {
         path: 'invite',
         loadComponent: () =>
