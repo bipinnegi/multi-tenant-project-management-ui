@@ -15,19 +15,43 @@
 
     @if (members.length > 0) {
       <div class="members-table">
+
+        <!-- Header -->
         <div class="members-header">
-          <span>Name</span>
+          <span>Member</span>
           <span>Email</span>
           <span>Role</span>
+          <span class="actions-col">Action</span>
         </div>
 
+        <!-- Rows -->
         @for (member of members; track member.id) {
           <div class="member-row">
-            <span>{{ member.fullName }}</span>
-            <span>{{ member.email }}</span>
-            <span class="role">{{ member.role }}</span>
+
+            <!-- Avatar + Name -->
+            <div class="member-info">
+              <div class="avatar">
+                {{ member.fullName.charAt(0) }}
+              </div>
+              <span class="name">{{ member.fullName }}</span>
+            </div>
+
+            <!-- Email -->
+            <span class="email">{{ member.email }}</span>
+
+            <!-- Role -->
+           <span class="role-badge" [ngClass]="member.role.toLowerCase()">
+            {{ member.role }}
+           </span>
+
+            <!-- Actions -->
+            <button class="action-btn" title="Actions">
+              ⋮
+            </button>
+
           </div>
         }
+
       </div>
     }
 
