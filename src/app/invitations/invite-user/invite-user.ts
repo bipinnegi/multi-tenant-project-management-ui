@@ -21,7 +21,7 @@ export class InviteUserComponent {
   successMessage = '';
   errorMessage = '';
 
-  loading = false; // ✅ NEW
+  loading = false; 
 
   constructor(
     private invitationService: InvitationService,

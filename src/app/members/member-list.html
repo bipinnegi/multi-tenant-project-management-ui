@@ -21,7 +21,9 @@
           <span>Member</span>
           <span>Email</span>
           <span>Role</span>
-          <span class="actions-col">Action</span>
+          @if (isOwner) {
+            <span class="actions-col">Action</span>
+          }
         </div>
 
         <!-- Rows -->
@@ -40,14 +42,18 @@
             <span class="email">{{ member.email }}</span>
 
             <!-- Role -->
-           <span class="role-badge" [ngClass]="member.role.toLowerCase()">
-            {{ member.role }}
-           </span>
+            <span
+              class="role-badge"
+              [ngClass]="member.role.toLowerCase()">
+              {{ member.role }}
+            </span>
 
-            <!-- Actions -->
-            <button class="action-btn" title="Actions">
-              ⋮
-            </button>
+            <!-- Actions (Owner only) -->
+            @if (isOwner) {
+              <button class="action-btn" title="Actions">
+                ⋮
+              </button>
+            }
 
           </div>
         }
