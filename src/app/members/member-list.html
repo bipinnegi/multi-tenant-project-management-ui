@@ -8,9 +8,7 @@
   @if (members$ | async; as members) {
 
     @if (members.length === 0) {
-      <div class="empty-state">
-        No members found.
-      </div>
+      <div class="empty-state">No members found.</div>
     }
 
     @if (members.length > 0) {
@@ -30,7 +28,7 @@
         @for (member of members; track member.id) {
           <div class="member-row">
 
-            <!-- Avatar + Name -->
+            <!-- Member -->
             <div class="member-info">
               <div class="avatar">
                 {{ member.fullName.charAt(0) }}
@@ -48,11 +46,41 @@
               {{ member.role }}
             </span>
 
-            <!-- Actions (Owner only) -->
-            @if (isOwner) {
-              <button class="action-btn" title="Actions">
-                ⋮
-              </button>
+            <!-- Actions (Owner only, not self) -->
+            @if (isOwner && !isSelf(member)) {
+              <div
+                class="actions-wrapper"
+                (click)="$event.stopPropagation()">
+
+                <button
+                  class="action-btn"
+                  (click)="toggleMenu(member.id, $event)">
+                  ⋮
+                </button>
+
+                @if (openMenuFor === member.id) {
+                  <div class="action-menu">
+
+                    <!-- Make Owner -->
+                    <button
+                     class="role-option"
+                     (click)="changeRole(member, 'Owner')"
+                     [disabled]="member.role === 'Owner'">
+                      Owner
+                   </button>
+                  
+                   <!-- Make Member -->
+                   <button
+                     class="role-option"
+                     (click)="changeRole(member, 'Member')"
+                     [disabled]="member.role === 'Member'">
+                     Member
+                   </button>                     
+
+
+                  </div>
+                }
+              </div>
             }
 
           </div>
@@ -62,9 +90,7 @@
     }
 
   } @else {
-    <div class="loading">
-      Loading members…
-    </div>
+    <div class="loading">Loading members…</div>
   }
 
 </div>

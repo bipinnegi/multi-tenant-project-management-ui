@@ -3,21 +3,33 @@ import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
-export interface TenantMember{
-    id: string;
-    fullName: string;
-    email: string;
-    role: string;
+export interface TenantMember {
+  id: string;
+  fullName: string;
+  email: string;
+  role: string;
 }
+
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class TenantService {
-    private apiUrl = `${environment.apiBaseUrl}/api/tenants`;
 
-    constructor(private http: HttpClient){}
+  private apiUrl = `${environment.apiBaseUrl}/api/tenants`;
 
-    getMembers(): Observable<TenantMember[]>{
-        return this.http.get<TenantMember[]>(`${this.apiUrl}/members`);
-    }
+  constructor(private http: HttpClient) {}
+
+  
+  getMembers(): Observable<TenantMember[]> {
+    return this.http.get<TenantMember[]>(`${this.apiUrl}/members`);
+  }
+
+  // Change member role
+  changeMemberRole(userId: string, role: string) {
+  return this.http.patch(
+    `${this.apiUrl}/members/${userId}/role`,
+    { role }
+  );
+  }
+
 }
