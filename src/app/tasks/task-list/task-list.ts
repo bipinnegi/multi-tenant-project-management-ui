@@ -107,6 +107,7 @@ export class TaskListComponent {
 closeDeleteModal() {
   this.showDeleteModal = false;
   this.taskToDelete = null;
+  this.loadTasks();
 }
 
 confirmDelete() {
@@ -122,7 +123,7 @@ confirmDelete() {
         );
 
         this.closeDeleteModal();
-        this.cdr.detectChanges();
+        this.loadTasks();
       },
       error: (err) => {
         console.error('Failed to delete task', err);

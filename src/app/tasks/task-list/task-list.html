@@ -39,7 +39,7 @@
 
         <div class="mt-2">
           Status:
-          <span class="badge bg-secondary">
+          <span class="badge-status" [ngClass]="task.status.toLowerCase().replace(' ', '-')">
             {{ task.status }}
           </span>
         </div>
