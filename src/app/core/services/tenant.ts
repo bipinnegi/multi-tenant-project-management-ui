@@ -32,4 +32,10 @@ export class TenantService {
   );
   }
 
+  removeMember(userId: string) {
+    return this.http.delete(
+      `${this.apiUrl}/members/${userId}`
+    );
+  }
+
 }

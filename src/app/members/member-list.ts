@@ -17,7 +17,7 @@ export class MemberListComponent implements OnInit {
   isOwner = false;
   currentUserEmail: string | null = null;
 
-  /** Controls which row menu is open */
+  // Controls which dropdown is open
   openMenuFor: string | null = null;
 
   constructor(
@@ -47,25 +47,47 @@ export class MemberListComponent implements OnInit {
     return member.email === this.currentUserEmail;
   }
 
-  /** Close menu when clicking anywhere outside */
+ 
+  // Change role
+  
+  changeRole(member: TenantMember, newRole: string) {
+    this.tenantService.changeMemberRole(member.id, newRole).subscribe({
+      next: () => {
+        this.openMenuFor = null;
+        this.loadMembers();
+      },
+      error: (err) => {
+        alert(err.error?.message || 'Failed to change role');
+        this.openMenuFor = null;
+      }
+    });
+  }
+
+  
+  // Remove member
+ 
+  removeMember(member: TenantMember) {
+    const confirmed = confirm(
+      `Remove ${member.fullName} from this company?`
+    );
+
+    if (!confirmed) return;
+
+    this.tenantService.removeMember(member.id).subscribe({
+      next: () => {
+        this.openMenuFor = null;
+        this.loadMembers();
+      },
+      error: (err) => {
+        alert(err.error?.message || 'Failed to remove member');
+        this.openMenuFor = null;
+      }
+    });
+  }
+
+  // Close menu on outside click
   @HostListener('document:click')
   closeMenu() {
     this.openMenuFor = null;
   }
-
-  changeRole(member: TenantMember, newRole: string) {
-  this.tenantService.changeMemberRole(member.id, newRole).subscribe({
-    next: () => {
-      this.openMenuFor = null;
-      this.loadMembers();
-
-    },
-    error: (err) => {
-      console.error('Failed to change role', err);
-      alert(err.error?.message || 'Failed to change role');
-      this.openMenuFor = null;
-    }
-  });
- }
-
 }

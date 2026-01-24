@@ -185,3 +185,12 @@
     justify-content: flex-start;
   }
 }
+
+.action-menu .danger {
+  color: #DE350B;
+  font-weight: 500;
+}
+
+.action-menu .danger:hover {
+  background: #FFEBE6;
+}

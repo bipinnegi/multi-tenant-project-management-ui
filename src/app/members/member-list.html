@@ -46,11 +46,9 @@
               {{ member.role }}
             </span>
 
-            <!-- Actions (Owner only, not self) -->
+            <!-- Actions -->
             @if (isOwner && !isSelf(member)) {
-              <div
-                class="actions-wrapper"
-                (click)="$event.stopPropagation()">
+              <div class="actions-wrapper" (click)="$event.stopPropagation()">
 
                 <button
                   class="action-btn"
@@ -61,22 +59,27 @@
                 @if (openMenuFor === member.id) {
                   <div class="action-menu">
 
-                    <!-- Make Owner -->
+                    <!-- Change role -->
                     <button
-                     class="role-option"
-                     (click)="changeRole(member, 'Owner')"
-                     [disabled]="member.role === 'Owner'">
-                      Owner
-                   </button>
-                  
-                   <!-- Make Member -->
-                   <button
-                     class="role-option"
-                     (click)="changeRole(member, 'Member')"
-                     [disabled]="member.role === 'Member'">
-                     Member
-                   </button>                     
+                      (click)="changeRole(member, 'Owner')"
+                      [disabled]="member.role === 'Owner'">
+                      Make Owner
+                    </button>
 
+                    <button
+                      (click)="changeRole(member, 'Member')"
+                      [disabled]="member.role === 'Member'">
+                      Make Member
+                    </button>
+
+                    
+                    @if (member.role === 'Member') {
+                      <button
+                        class="danger"
+                        (click)="removeMember(member)">
+                        Remove
+                      </button>
+                    }
 
                   </div>
                 }
