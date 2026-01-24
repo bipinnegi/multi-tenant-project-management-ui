@@ -1,0 +1,338 @@
+/* ===============================
+   LAYOUT
+   =============================== */
+
+.landing-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 64px;
+  gap: 48px;
+}
+
+
+
+/* ===============================
+   HEADER BRANDING (PREMIUM)
+   =============================== */
+
+/* Brand container */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Jira-style logo icon */
+.brand-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+
+  /* Subtle depth so it doesn’t feel flat */
+  filter: drop-shadow(0 6px 12px rgba(2, 6, 23, 0.18));
+
+  transition: var(--transition-smooth);
+}
+
+/* Slight lift on hover (premium micro-interaction) */
+.brand:hover .brand-logo {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Brand name */
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text-primary);
+
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+/* Emphasized suffix (Flow) */
+.brand-suffix {
+  font-weight: 700;
+  background-color: rgb(0, 110, 255);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ===============================
+   HEADER (REFINEMENT)
+   =============================== */
+
+.landing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Theme toggle already exists — just ensure consistency */
+/* ===============================
+   THEME TOGGLE BUTTON
+   =============================== */
+
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+
+  transition: var(--transition-smooth);
+}
+
+/* Icon inside button */
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+
+  transition: var(--transition-smooth);
+}
+.theme-iconD {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: invert(1);
+ transition: var(--transition-smooth);
+}
+/* Subtle interaction */
+.theme-toggle:hover {
+  transform: translateY(-2px);
+}
+
+
+/* ===============================
+   HERO
+   =============================== */
+
+.hero-section {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 64px;
+}
+
+.hero-text h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.gradient-text {
+  color: rgb(0, 110, 255);
+}
+
+.hero-text p {
+  margin-top: 16px;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+}
+
+.cta-button {
+  margin-top: 32px;
+  padding: 14px 32px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background-color: rgb(0, 110, 255);
+}
+
+/* ===============================
+   HERO SVG
+   =============================== */
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-visual svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ===============================
+   VALUE SECTION (AESTHETIC)
+   =============================== */
+
+.value-section {
+  padding: 96px 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+/* Header text */
+.value-header {
+  max-width: 560px;
+}
+
+.value-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.value-header p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Cards grid */
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Individual card */
+.value-card {
+  position: relative;
+  padding: 32px 28px;
+  border-radius: 18px;
+
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-soft);
+
+  transition: var(--transition-smooth);
+}
+
+/* Accent line */
+.value-accent {
+  width: 36px;
+  height: 4px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+
+  background: linear-gradient(
+    90deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+}
+
+/* Card hover interaction */
+.value-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Card text */
+.value-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+
+.value-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+
+
+/* ===============================
+   FOOTER
+   =============================== */
+
+.landing-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+/* =====================================================
+   📱 MOBILE ONLY FIXES (NO DESKTOP CHANGES)
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  /* Overall spacing */
+  .landing-wrapper {
+    padding: 20px 20px;
+    gap: 40px;
+  }
+
+  /* Header */
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-name {
+    font-size: 1.1rem;
+  }
+
+  .theme-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* HERO: stack layout */
+  .hero-section {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    padding: 16px;
+  }
+
+  /* SVG scale control */
+  .hero-visual svg {
+    max-width: 100%;
+    transform: scale(0.95);
+  }
+
+  /* VALUE SECTION */
+  .value-section {
+    padding: 64px 0;
+    gap: 40px;
+  }
+
+  .value-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .value-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .value-card {
+    padding: 28px 24px;
+  }
+
+  /* Footer */
+  .landing-footer {
+    font-size: 0.85rem;
+  }
+}

@@ -1,1 +1,70 @@
+
 @import "bootstrap/dist/css/bootstrap.min.css";
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.6);
+
+  --text-primary: #020617;
+  --text-secondary: #475569;
+
+  --accent-primary: #6366f1;
+  --accent-secondary: #22d3ee;
+
+  --border-color: rgba(2, 6, 23, 0.08);
+  --shadow-soft: 0 20px 40px rgba(2, 6, 23, 0.08);
+
+  --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode */
+body.dark {
+  --bg-primary: #020617;
+  --bg-secondary: #020617;
+  --bg-glass: rgba(15, 23, 42, 0.65);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  --border-color: rgba(248, 250, 252, 0.08);
+  --shadow-soft: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* ===============================
+   GLOBAL RESET & BASE
+   =============================== */
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Ubuntu, sans-serif;
+
+  background: var(--bg-primary);
+  color: var(--text-primary);
+
+  transition: var(--transition-smooth);
+}
+
+/* ===============================
+   UTILITY CLASSES
+   =============================== */
+
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+}
+
+.smooth-hover {
+  transition: var(--transition-smooth);
+}
+
+.smooth-hover:hover {
+  transform: translateY(-2px);
+}

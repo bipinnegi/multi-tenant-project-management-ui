@@ -1,0 +1,213 @@
+<div class="landing-wrapper">
+
+  <!-- HEADER -->
+  <header class="landing-header">
+    <div class="brand">
+      <img src="branding/jira-logo.svg" class="brand-logo" />
+      <span class="brand-name">
+        Project<span class="brand-suffix">Flow</span>
+      </span>
+    </div>
+
+    <button
+  class="theme-toggle smooth-hover"
+  (click)="toggleDarkMode()"
+  aria-label="Toggle dark mode"
+>
+  <!-- Dark mode icon -->
+  <img
+    *ngIf="!isDarkMode"
+    src="branding/dark.svg"
+    alt="Enable dark mode"
+    class="theme-icon"
+  />
+
+  <!-- Light mode icon -->
+  <img
+    *ngIf="isDarkMode"
+    src="branding/light.svg"
+    alt="Enable light mode"
+    class="theme-iconD"
+  />
+</button>
+
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1>
+        Manage projects with
+        <span class="gradient-text">clarity</span> and
+        <span class="gradient-text">control</span>
+      </h1>
+
+      <p>
+        A modern workspace designed for teams who care about structure,
+        visibility, and execution — without friction.
+      </p>
+
+      <button class="cta-button smooth-hover" (click)="goToLogin()">
+        Get Started
+      </button>
+    </div>
+
+    <div class="hero-visual">
+      <svg
+  width="680"
+  height="460"
+  viewBox="0 0 680 460"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#22D3EE" />
+    </linearGradient>
+
+    <!-- Glass panel -->
+    <linearGradient id="glassGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.25)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+    </linearGradient>
+
+    <!-- Card -->
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F8FAFC" />
+      <stop offset="100%" stop-color="#E0E7FF" />
+    </linearGradient>
+
+    <!-- Shadow -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-opacity="0.35" />
+    </filter>
+
+    <!-- Blur for glass -->
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="8" />
+    </filter>
+  </defs>
+
+  <!-- Floating workspace -->
+  <g filter="url(#shadow)">
+    <animateTransform
+      attributeName="transform"
+      type="translate"
+      from="0 0"
+      to="0 -16"
+      dur="7s"
+      repeatCount="indefinite"
+      direction="alternate"
+    />
+
+    <!-- Main container -->
+    <rect
+      x="40"
+      y="40"
+      rx="22"
+      width="600"
+      height="360"
+      fill="url(#bgGrad)"
+      opacity="0.95"
+    />
+
+    <!-- Top header -->
+    <rect x="60" y="60" rx="12" width="560" height="48" fill="#020617" opacity="0.75" />
+
+    <!-- Header elements -->
+    <circle cx="90" cy="84" r="6" fill="#22C55E" />
+    <circle cx="110" cy="84" r="6" fill="#FACC15" />
+    <circle cx="130" cy="84" r="6" fill="#EF4444" />
+
+    <!-- Glass columns -->
+    <!-- Column 1 -->
+    <g>
+      <rect x="70" y="130" rx="16" width="160" height="230" fill="url(#glassGrad)" />
+      <rect x="85" y="155" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+      <rect x="85" y="210" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+      <rect x="85" y="265" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+    </g>
+
+    <!-- Column 2 -->
+    <g>
+      <rect x="260" y="130" rx="16" width="160" height="230" fill="url(#glassGrad)" />
+      <rect x="275" y="155" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+      <rect x="275" y="210" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+    </g>
+
+    <!-- Column 3 -->
+    <g>
+      <rect x="450" y="130" rx="16" width="160" height="230" fill="url(#glassGrad)" />
+      <rect x="465" y="155" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+      <rect x="465" y="210" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+      <rect x="465" y="265" rx="10" width="130" height="44" fill="url(#cardGrad)" />
+    </g>
+
+    <!-- Avatars -->
+    <circle cx="180" cy="325" r="10" fill="#38BDF8" />
+    <circle cx="200" cy="325" r="10" fill="#A5B4FC" />
+    <circle cx="220" cy="325" r="10" fill="#F472B6" />
+
+    <!-- Progress indicator -->
+    <rect x="300" y="330" rx="6" width="140" height="8" fill="#020617" opacity="0.4" />
+    <rect x="300" y="330" rx="6" width="86" height="8" fill="#22C55E" />
+  </g>
+</svg>
+
+    </div>
+  </section>
+
+  <!-- VALUE SECTION (NEW) -->
+  <!-- VALUE SECTION -->
+<section class="value-section">
+
+  <div class="value-header">
+    <h2>
+      Built for teams that value
+      <span class="gradient-text">clarity</span>
+    </h2>
+    <p>
+      Everything in ProjectFlow is designed to remove ambiguity,
+      improve ownership, and keep teams aligned as they scale.
+    </p>
+  </div>
+
+  <div class="value-grid">
+    <div class="value-card smooth-hover">
+      <div class="value-accent"></div>
+      <h3>Structured Workflows</h3>
+      <p>
+        Organize projects, tasks, and responsibilities with clear states
+        and predictable flows — no hidden complexity.
+      </p>
+    </div>
+
+    <div class="value-card smooth-hover">
+      <div class="value-accent"></div>
+      <h3>Team Visibility</h3>
+      <p>
+        Track progress across projects and teams in real time
+        while maintaining strict tenant and role isolation.
+      </p>
+    </div>
+
+    <div class="value-card smooth-hover">
+      <div class="value-accent"></div>
+      <h3>Designed to Scale</h3>
+      <p>
+        Built with growing organizations in mind — role-based access,
+        audit trails, and enterprise-grade control baked in.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+
+  <!-- FOOTER -->
+  <footer class="landing-footer">
+    <p>© 2026 ProjectFlow. All rights reserved.</p>
+  </footer>
+
+</div>

@@ -2,10 +2,16 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
 import { RegisterComponent } from './auth/register/register';
 import { AuthenticatedLayoutComponent } from './layout/authenticated-layout/authenticated-layout';
+import { LandingPageComponent } from './landing/landing-page';
+
 
 
 export const routes: Routes = [
   // 🌐 Public routes
+  {
+    path: '',
+    component: LandingPageComponent
+  },
   {
     path: 'login',
     loadComponent: () =>
