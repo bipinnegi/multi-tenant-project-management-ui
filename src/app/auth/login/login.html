@@ -1,12 +1,36 @@
 <div class="jira-login-wrapper">
+
+  <!-- THEME TOGGLE -->
+  <button
+    class="theme-toggle"
+    (click)="toggleDarkMode()"
+    aria-label="Toggle dark mode"
+  >
+    <!-- Dark mode icon -->
+    <img
+      *ngIf="!isDarkMode"
+      src="branding/dark.svg"
+      alt="Enable dark mode"
+      class="theme-icon"
+    />
+
+    <!-- Light mode icon -->
+    <img
+      *ngIf="isDarkMode"
+      src="branding/light.svg"
+      alt="Enable light mode"
+      class="theme-icon theme-icon-dark"
+    />
+  </button>
+
   <!-- LEFT PANEL -->
   <div class="jira-left">
     <div class="jira-brand">
       <img
-  src="branding/jira-logo.svg"
-  alt="Logo"
-  class="brand-logo"
-/>
+        src="branding/jira-logo.svg"
+        alt="Logo"
+        class="brand-logo"
+      />
       <span>Project Manager</span>
     </div>
 
@@ -49,9 +73,10 @@
   <!-- RIGHT PANEL -->
   <div class="jira-right">
     <img
-  src="branding/jira-preview.svg"
-  alt="Preview"
-  class="preview-img"
-/>
+      src="branding/jira-preview.svg"
+      alt="Preview"
+      class="preview-img"
+    />
   </div>
+
 </div>

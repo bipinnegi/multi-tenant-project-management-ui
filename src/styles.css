@@ -1,5 +1,9 @@
-
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+/* =====================================================
+   🌞 LIGHT THEME VARIABLES (DEFAULT)
+   ===================================================== */
+
 :root {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
@@ -17,24 +21,28 @@
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark mode */
+/* =====================================================
+   🌙 DARK THEME VARIABLES (GLOBAL)
+   ===================================================== */
+
 body.dark {
-  --bg-primary: #020617;
-  --bg-secondary: #020617;
+   --bg-primary: #020617;
+  --bg-secondary: #0b1020;
   --bg-glass: rgba(15, 23, 42, 0.65);
 
   --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
+  --text-secondary: #cbd5f5;
 
-  --border-color: rgba(248, 250, 252, 0.08);
+  --border-color: rgba(255, 255, 255, 0.15);
   --shadow-soft: 0 30px 60px rgba(0, 0, 0, 0.6);
+
+  --accent-primary: rgb(0, 110, 255);
+  --accent-secondary: #60a5fa;
 }
 
-/* ===============================
-   GLOBAL RESET & BASE
-   =============================== */
-
-
+/* =====================================================
+   🌍 GLOBAL RESET & BASE
+   ===================================================== */
 
 * {
   box-sizing: border-box;
@@ -42,8 +50,8 @@ body.dark {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Ubuntu, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Ubuntu, sans-serif;
 
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -51,9 +59,9 @@ body {
   transition: var(--transition-smooth);
 }
 
-/* ===============================
-   UTILITY CLASSES
-   =============================== */
+/* =====================================================
+   🧩 GLOBAL UTILITY CLASSES
+   ===================================================== */
 
 .glass {
   background: var(--bg-glass);
@@ -67,4 +75,34 @@ body {
 
 .smooth-hover:hover {
   transform: translateY(-2px);
+}
+
+/* =====================================================
+   🔐 LOGIN PAGE — DARK MODE PANEL SEPARATION (GLOBAL)
+   ===================================================== */
+
+/*
+  IMPORTANT:
+  This MUST live in styles.css (global).
+  Component CSS cannot target body.dark due to Angular
+  view encapsulation.
+*/
+
+/* Left panel — base dark surface */
+body.dark .jira-left {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+
+  /* Subtle seam to separate panels */
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.035);
+}
+
+/* Right panel — slightly elevated dark surface */
+body.dark .jira-right {
+  background: #0f172a; /* slightly lighter than bg-primary */
+
+  /* Gentle depth (no harsh contrast) */
+  box-shadow:
+    inset 1px 0 0 rgba(255, 255, 255, 0.03),
+    -6px 0 18px rgba(0, 0, 0, 0.25);
 }

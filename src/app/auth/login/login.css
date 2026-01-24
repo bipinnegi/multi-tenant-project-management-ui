@@ -1,16 +1,56 @@
-/* Layout */
+/* ===============================
+   LAYOUT
+   =============================== */
+
 .jira-login-wrapper {
   display: flex;
   height: 100vh;
-  background: #e9f2ff;
+  background: var(--bg-primary);
   font-family: Inter, system-ui, sans-serif;
+  position: relative;
 }
 
-/* LEFT */
+/* ===============================
+   THEME TOGGLE
+   =============================== */
+
+.theme-toggle {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.theme-icon-dark {
+  filter: brightness(0) invert(1);
+}
+
+/* ===============================
+   LEFT PANEL
+   =============================== */
+
 .jira-left {
   width: 45%;
   padding: 60px;
-  background: #e9f2ff;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,9 +72,13 @@
   font-size: 40px;
   font-weight: 700;
   margin-bottom: 30px;
+  color: var(--text-primary);
 }
 
-/* Form */
+/* ===============================
+   FORM
+   =============================== */
+
 .jira-form {
   max-width: 360px;
 }
@@ -43,15 +87,23 @@
   font-size: 14px;
   margin-top: 15px;
   display: block;
+  color: var(--text-secondary);
 }
 
 .jira-form input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 24px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(142, 138, 138);
   margin-top: 6px;
   font-size: 14px;
+
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.jira-form input::placeholder {
+  color: var(--text-secondary);
 }
 
 .btn-primary {
@@ -59,47 +111,44 @@
   margin-top: 24px;
   padding: 12px;
   border-radius: 24px;
-  background: #0052cc;
-  color: #fff;
+  background: rgb(0, 110, 255);
+  color: white;
   border: none;
   font-weight: 600;
 }
 
-.btn-primary:hover {
-  background: #0747a6;
-}
+/* ===============================
+   ERROR & FOOTER
+   =============================== */
 
-/* Error */
 .error-box {
   margin-top: 15px;
   color: #de350b;
   font-size: 14px;
 }
 
-/* Footer */
 .jira-footer {
   margin-top: 20px;
   font-size: 14px;
+  color: var(--text-secondary);
 }
 
 .jira-footer a {
-  color: #0052cc;
+  color: rgb(0, 110, 255);
   text-decoration: none;
   margin-left: 5px;
 }
 
-/* RIGHT */
+/* ===============================
+   RIGHT PANEL
+   =============================== */
+
 .jira-right {
   width: 55%;
-  background: #fff;
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.brand-logo {
-  width: 36px;
-  margin-bottom: 0px;
 }
 
 .preview-img {
@@ -107,43 +156,50 @@
   height: auto;
 }
 
-/* ===== Mobile Login Layout ===== */
+/* ===============================
+   MOBILE LOGIN LAYOUT
+   =============================== */
+
 @media (max-width: 768px) {
 
+  /* Stack layout */
   .jira-login-wrapper {
     flex-direction: column;
     height: auto;
     min-height: 100vh;
+     width: 100vw;          /* ✅ FORCE full viewport width */
+    min-height: 100vh;     /* ✅ FORCE full viewport height */
+    background: var(--bg-primary); /* ✅ prevent body bleed */
   }
 
-  /* Hide right preview panel */
+  /* Hide preview panel on mobile */
   .jira-right {
     display: none;
   }
 
-  /* Full-width left panel */
+  /* Full-width login panel */
   .jira-left {
     width: 100%;
     padding: 32px 20px;
     justify-content: flex-start;
+     min-height: 100vh; 
+     background: var(--bg-primary); 
   }
 
-  .jira-brand {
-    margin-bottom: 24px;
-  }
-
+  /* Typography scaling */
   .jira-left h1 {
     font-size: 26px;
     line-height: 1.3;
     margin-bottom: 20px;
   }
 
+  /* Form adjustments */
   .jira-form {
     max-width: 100%;
   }
 
   .jira-form input {
-    font-size: 16px; /* prevents mobile zoom */
+    font-size: 16px; /* prevents iOS zoom */
     padding: 14px 16px;
   }
 
@@ -152,10 +208,52 @@
     font-size: 16px;
   }
 
+  /* Footer alignment */
   .jira-footer {
     margin-top: 24px;
     text-align: center;
   }
 }
+
+/* =====================================================
+   🌙 DARK MODE — SOFT SEPARATION (REFINED)
+   ===================================================== */
+
+body.dark .jira-login-wrapper {
+  background: #020617 !important;
+}
+
+
+
+/* Headings */
+body.dark .jira-left h1 {
+  color: #f8fafc !important;
+}
+
+/* Labels */
+body.dark .jira-form label {
+  color: #cbd5f5 !important;
+}
+
+/* Inputs */
+body.dark .jira-form input {
+  background: #020617 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+body.dark .jira-form input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Footer */
+body.dark .jira-footer {
+  color: #cbd5f5 !important;
+}
+
+body.dark .jira-footer a {
+  color: #60a5fa !important;
+}
+
 
 
