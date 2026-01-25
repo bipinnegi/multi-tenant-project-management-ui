@@ -6,13 +6,14 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  standalone:true,
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export class RegisterComponent {
- tenantName = '';
+
+  tenantName = '';
   ownerName = '';
   email = '';
   password = '';
@@ -20,27 +21,47 @@ export class RegisterComponent {
   loading = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router){}
-  
-  register(){
-    this.loading= true;
-    this.errorMessage= '';
+  isDark = false;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    // Restore theme from localStorage on reload
+    const storedTheme = localStorage.getItem('theme');
+
+    if (storedTheme === 'dark') {
+      this.isDark = true;
+      document.body.classList.add('dark');
+    }
+  }
+
+  toggleTheme() {
+    this.isDark = !this.isDark;
+    document.body.classList.toggle('dark', this.isDark);
+    localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+  }
+
+  register() {
+    this.loading = true;
+    this.errorMessage = '';
 
     this.authService.registerOwner({
       tenantName: this.tenantName,
-      ownerName : this.ownerName,
-      ownerEmail : this.email,
-      password : this.password
+      ownerName: this.ownerName,
+      ownerEmail: this.email,
+      password: this.password
     }).subscribe({
-      next: (res)=>{
+      next: (res) => {
         this.authService.setAuthData(res);
         this.router.navigate(['/projects']);
       },
-      error:()=>{
-        this.errorMessage=' registration failed';
+      error: () => {
+        this.errorMessage = 'Registration failed';
         this.loading = false;
       }
     });
   }
-
 }

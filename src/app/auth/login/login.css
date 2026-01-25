@@ -1,6 +1,4 @@
-/* ===============================
-   LAYOUT
-   =============================== */
+/* LAYOUT */
 
 .jira-login-wrapper {
   display: flex;
@@ -10,9 +8,7 @@
   position: relative;
 }
 
-/* ===============================
-   THEME TOGGLE
-   =============================== */
+/* THEME TOGGLE */
 
 .theme-toggle {
   position: absolute;
@@ -41,9 +37,7 @@
   filter: brightness(0) invert(1);
 }
 
-/* ===============================
-   LEFT PANEL
-   =============================== */
+/* LEFT PANEL*/
 
 .jira-left {
   width: 45%;
@@ -75,9 +69,11 @@
   color: var(--text-primary);
 }
 
-/* ===============================
-   FORM
-   =============================== */
+.bl-text{
+  color: rgb(0, 110, 255);
+}
+
+/* FORM */
 
 .jira-form {
   max-width: 360px;
@@ -94,7 +90,7 @@
   width: 100%;
   padding: 12px 14px;
   border-radius: 24px;
-  border: 1px solid rgb(142, 138, 138);
+  border: 1px solid var(--border-color);
   margin-top: 6px;
   font-size: 14px;
 
@@ -117,9 +113,7 @@
   font-weight: 600;
 }
 
-/* ===============================
-   ERROR & FOOTER
-   =============================== */
+/* ERROR & FOOTER */
 
 .error-box {
   margin-top: 15px;
@@ -139,9 +133,7 @@
   margin-left: 5px;
 }
 
-/* ===============================
-   RIGHT PANEL
-   =============================== */
+/* RIGHT PANEL */
 
 .jira-right {
   width: 55%;
@@ -156,9 +148,7 @@
   height: auto;
 }
 
-/* ===============================
-   MOBILE LOGIN LAYOUT
-   =============================== */
+/* MOBILE LOGIN LAYOUT */
 
 @media (max-width: 768px) {
 
@@ -167,9 +157,9 @@
     flex-direction: column;
     height: auto;
     min-height: 100vh;
-     width: 100vw;          /* ✅ FORCE full viewport width */
-    min-height: 100vh;     /* ✅ FORCE full viewport height */
-    background: var(--bg-primary); /* ✅ prevent body bleed */
+     width: 100vw;         
+    min-height: 100vh;    
+    background: var(--bg-primary); 
   }
 
   /* Hide preview panel on mobile */
@@ -215,9 +205,7 @@
   }
 }
 
-/* =====================================================
-   🌙 DARK MODE — SOFT SEPARATION (REFINED)
-   ===================================================== */
+/* DARK MODE */
 
 body.dark .jira-login-wrapper {
   background: #020617 !important;

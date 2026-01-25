@@ -1,16 +1,54 @@
-/* Reuse Jira login layout */
+/* ===============================
+   LAYOUT
+   =============================== */
+
 .jira-login-wrapper {
   display: flex;
   height: 100vh;
-  background: #e9f2ff;
+  background: var(--bg-primary);
   font-family: Inter, system-ui, sans-serif;
+  position: relative;
 }
 
-/* LEFT PANEL */
+/* ===============================
+   THEME TOGGLE
+   =============================== */
+
+.theme-toggle {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.theme-icon-dark {
+  filter: invert(1);
+}
+
+/* ===============================
+   LEFT PANEL
+   =============================== */
+
 .jira-left {
   width: 45%;
   padding: 60px;
-  background: #e9f2ff;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,16 +70,21 @@
   font-size: 36px;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #172b4d;
 }
 
 .jira-subtitle {
   font-size: 14px;
   margin-bottom: 30px;
-  color: #42526e;
+  color: var(--text-secondary);
+}
+.bl-text{
+  color: rgb(0, 110, 255);
 }
 
-/* FORM */
+/* ===============================
+   FORM
+   =============================== */
+
 .jira-form {
   max-width: 380px;
 }
@@ -50,16 +93,23 @@
   font-size: 13px;
   margin-top: 14px;
   display: block;
-  color: #172b4d;
+  color: var(--text-secondary);
 }
 
 .jira-form input {
   width: 100%;
   padding: 12px 14px;
   border-radius: 24px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   margin-top: 6px;
   font-size: 14px;
+
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.jira-form input::placeholder {
+  color: var(--text-secondary);
 }
 
 .btn-primary {
@@ -67,14 +117,10 @@
   margin-top: 24px;
   padding: 12px;
   border-radius: 24px;
-  background: #0052cc;
+  background: rgb(0, 110, 255);
   color: #fff;
   border: none;
   font-weight: 600;
-}
-
-.btn-primary:hover {
-  background: #0747a6;
 }
 
 .btn-primary:disabled {
@@ -82,17 +128,23 @@
   cursor: not-allowed;
 }
 
-/* ERROR */
+/* ===============================
+   ERROR
+   =============================== */
+
 .error-box {
   margin-top: 16px;
   color: #de350b;
   font-size: 14px;
 }
 
-/* RIGHT PANEL */
+/* ===============================
+   RIGHT PANEL
+   =============================== */
+
 .jira-right {
   width: 55%;
-  background: #ffffff;
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,34 +154,29 @@
   max-width: 80%;
 }
 
-/* ===== Mobile Register Layout ===== */
+/* ===============================
+   MOBILE
+   =============================== */
+
 @media (max-width: 768px) {
 
   .jira-login-wrapper {
     flex-direction: column;
-    height: auto;
     min-height: 100vh;
   }
 
-  /* Hide right preview panel */
   .jira-right {
     display: none;
   }
 
-  /* Full-width form panel */
   .jira-left {
     width: 100%;
     padding: 32px 20px;
     justify-content: flex-start;
   }
 
-  .jira-brand {
-    margin-bottom: 24px;
-  }
-
   .jira-left h1 {
     font-size: 26px;
-    margin-bottom: 8px;
   }
 
   .jira-subtitle {
@@ -141,12 +188,8 @@
     max-width: 100%;
   }
 
-  .jira-form label {
-    font-size: 14px;
-  }
-
   .jira-form input {
-    font-size: 16px; /* prevent mobile zoom */
+    font-size: 16px;
     padding: 14px 16px;
   }
 

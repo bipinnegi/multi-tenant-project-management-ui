@@ -1,8 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-/* =====================================================
-   🌞 LIGHT THEME VARIABLES (DEFAULT)
-   ===================================================== */
+/*  LIGHT THEME VARIABLES (DEFAULT)
+*/
 
 :root {
   --bg-primary: #f8fafc;
@@ -21,9 +20,9 @@
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* =====================================================
-   🌙 DARK THEME VARIABLES (GLOBAL)
-   ===================================================== */
+/*
+   DARK THEME VARIABLES (GLOBAL)
+   */
 
 body.dark {
    --bg-primary: #020617;
@@ -40,9 +39,9 @@ body.dark {
   --accent-secondary: #60a5fa;
 }
 
-/* =====================================================
-   🌍 GLOBAL RESET & BASE
-   ===================================================== */
+/* 
+    GLOBAL RESET & BASE
+   */
 
 * {
   box-sizing: border-box;
@@ -59,9 +58,9 @@ body {
   transition: var(--transition-smooth);
 }
 
-/* =====================================================
-   🧩 GLOBAL UTILITY CLASSES
-   ===================================================== */
+/* 
+    GLOBAL UTILITY CLASSES
+   */
 
 .glass {
   background: var(--bg-glass);
@@ -77,31 +76,25 @@ body {
   transform: translateY(-2px);
 }
 
-/* =====================================================
-   🔐 LOGIN PAGE — DARK MODE PANEL SEPARATION (GLOBAL)
-   ===================================================== */
 
-/*
-  IMPORTANT:
-  This MUST live in styles.css (global).
-  Component CSS cannot target body.dark due to Angular
-  view encapsulation.
-*/
+/*LOGIN PAGE*/
 
-/* Left panel — base dark surface */
+
+
+
 body.dark .jira-left {
   background: var(--bg-primary);
   color: var(--text-primary);
 
-  /* Subtle seam to separate panels */
+
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.035);
 }
 
-/* Right panel — slightly elevated dark surface */
-body.dark .jira-right {
-  background: #0f172a; /* slightly lighter than bg-primary */
 
-  /* Gentle depth (no harsh contrast) */
+body.dark .jira-right {
+  background: #0f172a; 
+
+  
   box-shadow:
     inset 1px 0 0 rgba(255, 255, 255, 0.03),
     -6px 0 18px rgba(0, 0, 0, 0.25);

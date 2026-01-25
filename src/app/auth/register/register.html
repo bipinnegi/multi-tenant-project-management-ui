@@ -1,5 +1,26 @@
 <div class="jira-login-wrapper">
 
+  <!-- Theme toggle -->
+  <button
+    class="theme-toggle"
+    type="button"
+    (click)="toggleTheme()"
+    aria-label="Toggle theme"
+  >
+    <img
+      *ngIf="!isDark"
+      src="branding/dark.svg"
+      class="theme-icon"
+      alt="Enable dark mode"
+    />
+    <img
+      *ngIf="isDark"
+      src="branding/light.svg"
+      class="theme-icon theme-icon-dark"
+      alt="Enable light mode"
+    />
+  </button>
+
   <!-- LEFT PANEL -->
   <div class="jira-left">
 
@@ -10,7 +31,7 @@
     </div>
 
     <!-- Heading -->
-    <h1>Create your workspace</h1>
+    <h1>Create your <span class="bl-text">workspace</span></h1>
     <p class="jira-subtitle">
       Set up your team’s project space in minutes.
     </p>

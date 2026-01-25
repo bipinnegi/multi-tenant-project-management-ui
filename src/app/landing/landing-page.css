@@ -1,6 +1,5 @@
-/* ===============================
-   LAYOUT
-   =============================== */
+/*  LAYOUT
+   */
 
 .landing-wrapper {
   min-height: 100vh;
@@ -12,9 +11,9 @@
 
 
 
-/* ===============================
-   HEADER BRANDING (PREMIUM)
-   =============================== */
+/* 
+   HEADER BRANDING 
+    */
 
 /* Brand container */
 .brand {
@@ -29,13 +28,13 @@
   height: 36px;
   object-fit: contain;
 
-  /* Subtle depth so it doesn’t feel flat */
+
   filter: drop-shadow(0 6px 12px rgba(2, 6, 23, 0.18));
 
   transition: var(--transition-smooth);
 }
 
-/* Slight lift on hover (premium micro-interaction) */
+
 .brand:hover .brand-logo {
   transform: translateY(-1px) scale(1.02);
 }
@@ -56,13 +55,14 @@
 .brand-suffix {
   font-weight: 700;
   background-color: rgb(0, 110, 255);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ===============================
-   HEADER (REFINEMENT)
-   =============================== */
+/* 
+   HEADER 
+    */
 
 .landing-header {
   display: flex;
@@ -70,10 +70,9 @@
   align-items: center;
 }
 
-/* Theme toggle already exists — just ensure consistency */
-/* ===============================
+/* 
    THEME TOGGLE BUTTON
-   =============================== */
+  */
 
 .theme-toggle {
   width: 42px;
@@ -110,9 +109,9 @@
 }
 
 
-/* ===============================
+/* 
    HERO
-   =============================== */
+   */
 
 .hero-section {
   display: grid;
@@ -148,9 +147,9 @@
   background-color: rgb(0, 110, 255);
 }
 
-/* ===============================
+/*
    HERO SVG
-   =============================== */
+   */
 
 .hero-visual {
   display: flex;
@@ -163,9 +162,8 @@
   height: auto;
 }
 
-/* ===============================
-   VALUE SECTION (AESTHETIC)
-   =============================== */
+/*
+   VALUE SECTION  */
 
 .value-section {
   padding: 96px 0 80px;
@@ -247,9 +245,8 @@
 
 
 
-/* ===============================
-   FOOTER
-   =============================== */
+/* 
+   FOOTER */
 
 .landing-footer {
   margin-top: auto;
@@ -259,9 +256,8 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
-/* =====================================================
-   📱 MOBILE ONLY FIXES (NO DESKTOP CHANGES)
-   ===================================================== */
+/*  MOBILE ONLY 
+ */
 
 @media (max-width: 768px) {
 
