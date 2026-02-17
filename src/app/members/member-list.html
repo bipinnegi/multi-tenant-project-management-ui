@@ -1,9 +1,9 @@
 <div class="members-page">
 
-  <h2>Company Members</h2>
-  <p class="subtitle">
-    People working under your company workspace.
-  </p>
+  <div class="page-header">
+    <h2>Company Members</h2>
+    <p class="subtitle">People working under your company workspace.</p>
+  </div>
 
   @if (members$ | async; as members) {
 
@@ -13,82 +13,38 @@
 
     @if (members.length > 0) {
       <div class="members-table">
-
-        <!-- Header -->
         <div class="members-header">
           <span>Member</span>
           <span>Email</span>
           <span>Role</span>
-          @if (isOwner) {
-            <span class="actions-col">Action</span>
-          }
+          @if (isOwner) { <span class="actions-col">Action</span> }
         </div>
 
-        <!-- Rows -->
         @for (member of members; track member.id) {
           <div class="member-row">
-
-            <!-- Member -->
             <div class="member-info">
-              <div class="avatar">
-                {{ member.fullName.charAt(0) }}
-              </div>
+              <div class="avatar">{{ member.fullName.charAt(0) }}</div>
               <span class="name">{{ member.fullName }}</span>
             </div>
-
-            <!-- Email -->
             <span class="email">{{ member.email }}</span>
+            <span class="role-badge" [ngClass]="member.role.toLowerCase()">{{ member.role }}</span>
 
-            <!-- Role -->
-            <span
-              class="role-badge"
-              [ngClass]="member.role.toLowerCase()">
-              {{ member.role }}
-            </span>
-
-            <!-- Actions -->
             @if (isOwner && !isSelf(member)) {
               <div class="actions-wrapper" (click)="$event.stopPropagation()">
-
-                <button
-                  class="action-btn"
-                  (click)="toggleMenu(member.id, $event)">
-                  ⋮
-                </button>
-
+                <button class="action-btn" (click)="toggleMenu(member.id, $event)">⋮</button>
                 @if (openMenuFor === member.id) {
                   <div class="action-menu">
-
-                    <!-- Change role -->
-                    <button
-                      (click)="changeRole(member, 'Owner')"
-                      [disabled]="member.role === 'Owner'">
-                      Make Owner
-                    </button>
-
-                    <button
-                      (click)="changeRole(member, 'Member')"
-                      [disabled]="member.role === 'Member'">
-                      Make Member
-                    </button>
-
-                    
+                    <button (click)="changeRole(member, 'Owner')" [disabled]="member.role === 'Owner'">Make Owner</button>
+                    <button (click)="changeRole(member, 'Member')" [disabled]="member.role === 'Member'">Make Member</button>
                     @if (member.role === 'Member') {
-                      <button
-                        class="danger"
-                        (click)="removeMember(member)">
-                        Remove
-                      </button>
+                      <button class="danger" (click)="removeMember(member)">Remove</button>
                     }
-
                   </div>
                 }
               </div>
             }
-
           </div>
         }
-
       </div>
     }
 

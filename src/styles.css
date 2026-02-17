@@ -1,7 +1,6 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-/*  LIGHT THEME VARIABLES (DEFAULT)
-*/
+/*  LIGHT THEME VARIABLES (DEFAULT) */
 
 :root {
   --bg-primary: #f8fafc;
@@ -20,12 +19,10 @@
   --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/*
-   DARK THEME VARIABLES (GLOBAL)
-   */
+/* DARK THEME VARIABLES (GLOBAL) */
 
 body.dark {
-   --bg-primary: #020617;
+  --bg-primary: #020617;
   --bg-secondary: #0b1020;
   --bg-glass: rgba(15, 23, 42, 0.65);
 
@@ -39,9 +36,7 @@ body.dark {
   --accent-secondary: #60a5fa;
 }
 
-/* 
-    GLOBAL RESET & BASE
-   */
+/* GLOBAL RESET & BASE */
 
 * {
   box-sizing: border-box;
@@ -58,9 +53,7 @@ body {
   transition: var(--transition-smooth);
 }
 
-/* 
-    GLOBAL UTILITY CLASSES
-   */
+/* GLOBAL UTILITY CLASSES */
 
 .glass {
   background: var(--bg-glass);
@@ -76,26 +69,98 @@ body {
   transform: translateY(-2px);
 }
 
-
-/*LOGIN PAGE*/
-
-
-
+/* LOGIN / REGISTER DARK MODE */
 
 body.dark .jira-left {
   background: var(--bg-primary);
   color: var(--text-primary);
-
-
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.035);
 }
 
-
 body.dark .jira-right {
-  background: #0f172a; 
-
-  
+  background: #0f172a;
   box-shadow:
     inset 1px 0 0 rgba(255, 255, 255, 0.03),
     -6px 0 18px rgba(0, 0, 0, 0.25);
+}
+
+/* GLOBAL INPUT FOCUS STYLES */
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgb(0, 110, 255) !important;
+  box-shadow: 0 0 0 3px rgba(0, 110, 255, 0.12);
+  transition: var(--transition-smooth);
+}
+
+body.dark input:focus,
+body.dark select:focus,
+body.dark textarea:focus {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.15);
+}
+
+/* DARK MODE FORM INPUTS */
+
+body.dark .jira-form input {
+  background: #0b1020 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+body.dark .jira-form input::placeholder {
+  color: #94a3b8 !important;
+}
+
+body.dark .btn-primary {
+  background: rgb(0, 110, 255) !important;
+  transition: var(--transition-smooth);
+}
+
+body.dark .btn-primary:hover {
+  background: #0062e6 !important;
+  box-shadow: 0 4px 14px rgba(0, 110, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* SELECT DARK MODE */
+
+select {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+body.dark select option {
+  background: #0b1020;
+  color: #f8fafc;
+}
+
+/* PAGE TRANSITIONS */
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

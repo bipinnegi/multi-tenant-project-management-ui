@@ -1,30 +1,41 @@
 .app-shell {
   display: flex;
   height: 100vh;
-  background: #f4f5f7;
+  background: var(--bg-primary);
+  transition: background 0.35s ease;
 }
 
 .main-area {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .page-content {
-  padding: 24px;
+  flex: 1;
   overflow-y: auto;
+  background: var(--bg-primary);
+  transition: background 0.35s ease;
 }
 
-/* ===== Mobile layout ===== */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 900;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @media (max-width: 768px) {
   .app-shell {
     flex-direction: column;
-  }
-
-  .sidebar-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 900;
   }
 }

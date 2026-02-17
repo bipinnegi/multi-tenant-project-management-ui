@@ -1,11 +1,16 @@
 <div class="projects-page">
 
-  <!-- ===== Projects Grid ===== -->
+  <div class="page-header">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-subtitle">All projects in your workspace</p>
+  </div>
+
   @if (projects$ | async; as projects) {
 
     @if (projects.length === 0) {
       <div class="empty-state">
-        No projects yet.
+        <div class="empty-icon">📁</div>
+        <p>No projects yet. Create one to get started.</p>
       </div>
     }
 
@@ -13,73 +18,45 @@
       <div class="projects-grid">
         @for (project of projects; track project.id) {
           <div class="project-card">
-
-  <div class="project-card-body">
-    <h5>{{ project.name }}</h5>
-    <p>{{ project.description }}</p>
-  </div>
-
-  <div class="project-card-footer">
-    <a
-      class="open-btn"
-      [routerLink]="['/projects', project.id, 'tasks']">
-      Open project →
-    </a>
-
-    @if (isOwner) {
-      <button
-        class="delete-btn"
-        (click)="openDeleteModal(project.id, project.name, $event)">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-           <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-           <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-        </svg>
-      </button>
-    }
-  </div>
-
-</div>
-
+            <div class="card-accent"></div>
+            <div class="project-card-body">
+              <h5>{{ project.name }}</h5>
+              <p>{{ project.description }}</p>
+            </div>
+            <div class="project-card-footer">
+              <a class="open-btn" [routerLink]="['/projects', project.id, 'tasks']">
+                Open project →
+              </a>
+              @if (isOwner) {
+                <button class="delete-btn" (click)="openDeleteModal(project.id, project.name, $event)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                  </svg>
+                </button>
+              }
+            </div>
+          </div>
         }
       </div>
     }
 
   } @else {
-    <div class="loading">
-      Loading projects…
-    </div>
+    <div class="loading"><p>Loading projects…</p></div>
   }
 
 </div>
 
-<!--modal-->
-
 @if (showDeleteModal) {
   <div class="modal-backdrop">
-
     <div class="modal-card">
       <h4>Delete project</h4>
-
-      <p>
-        Are you sure you want to delete
-        <strong>{{ projectToDeleteName }}</strong>?
-      </p>
-
-      <p class="warning">
-        This action cannot be undone.
-      </p>
-
+      <p>Are you sure you want to delete <strong>{{ projectToDeleteName }}</strong>?</p>
+      <div class="warning">This action cannot be undone.</div>
       <div class="modal-actions">
-        <button class="btn-cancel" (click)="closeDeleteModal()">
-          Cancel
-        </button>
-
-        <button class="btn-danger" (click)="confirmDeleteProject()">
-          Delete
-        </button>
+        <button class="btn-cancel" (click)="closeDeleteModal()">Cancel</button>
+        <button class="btn-danger" (click)="confirmDeleteProject()">Delete</button>
       </div>
     </div>
-
   </div>
 }
-

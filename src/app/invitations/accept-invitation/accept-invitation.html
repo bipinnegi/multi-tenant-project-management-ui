@@ -1,45 +1,23 @@
-<div class="container mt-4">
-  <h3>Accept Invitation</h3>
-
-  @if (successMessage) {
-    <div class="alert alert-success">
-      {{ successMessage }}
+<div class="accept-wrapper">
+  <div class="accept-card">
+    <div class="accept-brand">
+      <img src="branding/jira-logo.svg" alt="Logo" class="brand-logo" />
+      <span class="brand-name">Project<span class="brand-suffix">Flow</span></span>
     </div>
-  }
+    <h2>Accept Invitation</h2>
+    <p class="accept-subtitle">Complete your account setup to join the workspace.</p>
 
-  @if (errorMessage) {
-    <div class="alert alert-danger">
-      {{ errorMessage }}
+    @if (successMessage) { <div class="alert success">{{ successMessage }}</div> }
+    @if (errorMessage) { <div class="alert error">{{ errorMessage }}</div> }
+
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" [(ngModel)]="FullName" placeholder="Your full name" />
     </div>
-  }
-
-  <div class="card mt-3">
-    <div class="card-body">
-
-      <div class="mb-3">
-        <label class="form-label">Full Name</label>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="FullName"
-          placeholder="Your full name"
-        />
-      </div>
-
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input
-          type="password"
-          class="form-control"
-          [(ngModel)]="password"
-          placeholder="Create a password"
-        />
-      </div>
-
-      <button class="btn btn-success" (click)="acceptInvitation()">
-        Accept Invitation
-      </button>
-
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" [(ngModel)]="password" placeholder="Create a password" />
     </div>
+    <button class="accept-btn" (click)="acceptInvitation()">Accept & Join Workspace</button>
   </div>
 </div>

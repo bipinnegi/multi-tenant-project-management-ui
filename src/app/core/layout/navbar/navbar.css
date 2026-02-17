@@ -1,150 +1,126 @@
-/* ===== Base Navbar ===== */
 .navbar {
-  height: 56px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #DFE1E6;
-  padding: 0 16px;
-
+  height: 60px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 20px;
   display: flex;
   align-items: center;
-
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+  font-family: Inter, system-ui, sans-serif;
+  transition: background 0.35s ease, border-color 0.35s ease;
+  flex-shrink: 0;
 }
 
-/* ===== Left Section (Navigation) ===== */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  margin-right: 14px;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.mobile-menu-btn:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
+
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 35px;
+  gap: 4px;
+  flex: 1;
 }
 
-/* Navigation links (Projects / Status overview) */
 .navbar-link {
   position: relative;
-  padding: 6px 4px;
-
-  font-size: 15px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  font-size: 14px;
   font-weight: 500;
-  color: #42526E;
+  color: var(--text-secondary);
   text-decoration: none;
-
-  transition: color 0.15s ease;
+  transition: var(--transition-smooth);
 }
 
+.navbar-link:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--text-primary);
+}
 
-
-/* Active link underline (Jira style) */
 .navbar-link.active {
-  color: #2066df;
+  background: rgba(0, 110, 255, 0.1);
+  color: rgb(0, 110, 255);
   font-weight: 600;
 }
 
-.navbar-link.active::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -14px;
-
-  height: 2px;
-  background-color: #0052CC;
-  border-radius: 2px;
+body.dark .navbar-link.active {
+  background: rgba(96, 165, 250, 0.12);
+  color: #60a5fa;
 }
 
-/* ===== Right Section ===== */
 .navbar-actions {
   margin-left: auto;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* ===== User Menu ===== */
 .user-menu {
   display: flex;
   align-items: center;
   gap: 8px;
-
   cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 6px;
-
-  transition: background-color 0.15s ease;
+  padding: 6px 12px 6px 8px;
+  border-radius: 100px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  transition: var(--transition-smooth);
 }
 
 .user-menu:hover {
-  background-color: #F4F5F7;
+  border-color: var(--accent-primary);
+  background: rgba(99, 102, 241, 0.05);
 }
 
-/* Avatar circle */
 .user-avatar {
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-
-  background-color: #0052CC;
+  background: linear-gradient(135deg, rgb(0, 110, 255), #6366f1);
   color: #ffffff;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-/* Role label */
 .user-role {
-  font-size: 14px;
-  color: #42526E;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
-/* Chevron */
 .user-chevron {
-  font-size: 14px;
-  color: #6B778C;
-}
-
-/* Mobile menu button */
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 22px;
-  margin-right: 12px;
-  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-secondary);
 }
 
 @media (max-width: 768px) {
-  .mobile-menu-btn {
-    display: block;
-  }
-
-  .navbar {
-    padding: 0 12px;
-    height: 52px;
-  }
-
-  .navbar-left {
-    gap: 16px;
-  }
-
-  .navbar-link {
-    font-size: 14px;
-    padding: 8px 4px;
-  }
-
-  .navbar-link.active::after {
-    bottom: -10px;
-  }
-
-  .user-role {
-    display: none;
-  }
-
-  .user-avatar {
-    width: 26px;
-    height: 26px;
-    font-size: 12px;
-  }
+  .mobile-menu-btn { display: flex; }
+  .navbar { padding: 0 14px; height: 56px; }
+  .navbar-left { gap: 2px; }
+  .navbar-link { font-size: 13px; padding: 7px 10px; }
+  .user-role { display: none; }
+  .user-chevron { display: none; }
+  .user-menu { padding: 5px; border-radius: 50%; }
 }
