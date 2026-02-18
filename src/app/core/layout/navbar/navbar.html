@@ -6,9 +6,12 @@
           <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
       </button>
-      <a class="navbar-link" routerLink="/status-overview" routerLinkActive="active">Status Overview</a>
-      <a class="navbar-link" routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Projects</a>
+
+      <div class="workspace-name">
+        <span class="workspace-label">{{ userName }}'s workspace</span>
+      </div>
     </div>
+
     <div class="navbar-actions">
       <div class="user-menu">
         <div class="user-avatar">{{ isOwner ? 'O' : 'M' }}</div>

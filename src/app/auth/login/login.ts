@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   password = '';
   error = '';
 
-  // Track current theme state (shared with landing)
+  /* Theme state */
   isDarkMode = false;
 
   constructor(
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Sync theme from localStorage on page load
+    /* Sync theme from localStorage */
     const storedTheme = localStorage.getItem('theme');
 
     if (storedTheme === 'dark') {
@@ -36,13 +36,12 @@ export class LoginComponent implements OnInit {
   }
 
   toggleDarkMode() {
-    // Toggle theme state
+    /* Toggle theme */
     this.isDarkMode = !this.isDarkMode;
 
-    // Apply/remove dark class on body
     document.body.classList.toggle('dark', this.isDarkMode);
 
-    // Persist preference
+    /* Persist preference */
     localStorage.setItem(
       'theme',
       this.isDarkMode ? 'dark' : 'light'
@@ -52,9 +51,24 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
-        this.authService.setAuthData(response);
+
+        /*
+          IMPORTANT:
+          Backend may or may not return fullName.
+          We provide a safe fallback so navbar shows a real name.
+        */
+
+        const fallbackName =
+          this.email.split('@')[0]; // e.g. bipin@company.com → bipin
+
+        this.authService.setAuthData({
+          ...response,
+          fullName: response.fullName || fallbackName
+        });
+
         this.router.navigate(['/status-overview']);
       },
+
       error: () => {
         this.error = 'Invalid email or password';
       }

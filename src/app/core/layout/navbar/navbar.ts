@@ -15,14 +15,25 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isOwner = false;
   isLoggedIn = false;
 
+  userName = 'User';
+
   private sub!: Subscription;
+
   @Output() menuToggle = new EventEmitter<void>();
+
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+
+    /* Role tracking */
     this.sub = this.authService.role$.subscribe(role => {
       this.isLoggedIn = !!role;
       this.isOwner = role === 'Owner';
+    });
+
+    /* User name tracking */
+    this.authService.userName$.subscribe(name => {
+      this.userName = name;
     });
   }
 
@@ -31,7 +42,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggleMenu() {
-  this.menuToggle.emit();
+    this.menuToggle.emit();
   }
-
 }
