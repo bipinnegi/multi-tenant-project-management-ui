@@ -52,11 +52,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
 
-        /*
-          IMPORTANT:
-          Backend may or may not return fullName.
-          We provide a safe fallback so navbar shows a real name.
-        */
+      
 
         const fallbackName =
           this.email.split('@')[0]; // e.g. bipin@company.com → bipin

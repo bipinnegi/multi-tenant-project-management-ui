@@ -21,13 +21,13 @@ export class AuthenticatedLayoutComponent {
   @HostListener('window:resize')
   onResize() {
     this.isMobile = window.innerWidth <= 768;
-    // If we resize to desktop, close the mobile-pinned state
+    
     if (!this.isMobile && this.isSidebarOpen) {
       this.isSidebarOpen = false;
     }
   }
 
-  /** On mobile: show the dark backdrop when sidebar is pinned open */
+ 
   get isMobileBackdropVisible(): boolean {
     return this.isMobile && this.isSidebarOpen;
   }

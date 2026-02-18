@@ -2,7 +2,7 @@
 :host {
   display: block;
   flex-shrink: 0;
-  width: 68px;                         
+  width: 68px;                          
   height: 100%;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -14,7 +14,7 @@
   width: 260px;
 }
 
-
+/* Overlay hover: host keeps narrow width, sidebar floats above */
 :host.overlay .jira-sidebar {
   position: absolute;
   top: 0;
@@ -148,8 +148,8 @@
 }
 
 .nav-icon {
-  width: 21px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -253,7 +253,7 @@ body.dark .nav-item.add-item {
   object-fit: contain;
 }
 
-body.dark .theme-icon-wrap img.icon-light {
+.theme-icon-wrap img.icon-light {
   filter: brightness(0) invert(1);
 }
 
@@ -298,6 +298,29 @@ body.dark .theme-icon-wrap img.icon-light {
   transition: opacity 0.2s ease 0.1s, max-width 0.28s ease;
 }
 
+
+/* Sidebar close button - only shown on mobile */
+.sidebar-close-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: var(--accent-primary, #6366f1);
+  border-color: var(--accent-primary, #6366f1);
+}
+
 /* ─── Mobile ──────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   :host {
@@ -319,6 +342,15 @@ body.dark .theme-icon-wrap img.icon-light {
     width: 260px !important;
     height: 100%;
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Show brand header on mobile */
+  .sidebar-brand {
+    display: flex !important;
+  }
+
+  .sidebar-close-btn {
+    display: flex;
   }
 
   .brand-text,

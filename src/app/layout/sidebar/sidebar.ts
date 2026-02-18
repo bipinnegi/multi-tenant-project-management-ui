@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input, HostBinding } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, HostBinding } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
 import { ThemeService } from '../../core/services/theme.service';
@@ -21,13 +21,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
   showCreateModal = false;
   isHovered = false;
 
-  // These put the classes directly on <app-sidebar> so :host.pinned
-  // and :host.overlay work in sidebar.css to control the host width.
+  
   @HostBinding('class.pinned')
   get hostPinned(): boolean { return this.isPinned; }
 
   @HostBinding('class.overlay')
   get hostOverlay(): boolean { return this.isHovered && !this.isPinned; }
+
+  @Output() closeRequest = new EventEmitter<void>();
 
   private subs: Subscription[] = [];
 
@@ -38,6 +39,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   get isExpanded(): boolean {
     return this.isPinned || this.isHovered;
+  }
+
+  closeSidebar() {
+    this.closeRequest.emit();
   }
 
   openCreateModal() {

@@ -9,9 +9,6 @@ export class AuthService {
 
   private apiUrl = `${environment.apiBaseUrl}/api/auth`;
 
-  /* ===============================
-     ROLE STATE
-     =============================== */
 
   private roleSubject = new BehaviorSubject<string | null>(
     localStorage.getItem('role')
@@ -19,9 +16,7 @@ export class AuthService {
 
   role$ = this.roleSubject.asObservable();
 
-  /* ===============================
-     USER NAME STATE (JWT BASED)
-     =============================== */
+
 
   private userNameSubject = new BehaviorSubject<string>(
     localStorage.getItem('userName') || 'User'
@@ -34,9 +29,7 @@ export class AuthService {
     private router: Router
   ) {}
 
-  /* ===============================
-     JWT HELPER (Extract email prefix)
-     =============================== */
+
 
   private extractNameFromToken(token: string): string {
     try {
@@ -55,9 +48,7 @@ export class AuthService {
     }
   }
 
-  /* ===============================
-     AUTH STORAGE
-     =============================== */
+  
 
   setAuthData(auth: { token: string; role: string; tenantId: string }) {
 
@@ -65,7 +56,7 @@ export class AuthService {
     localStorage.setItem('role', auth.role);
     localStorage.setItem('tenantId', auth.tenantId);
 
-    // ✅ Extract and store user name
+    //  Extract and store user name
     const extractedName = this.extractNameFromToken(auth.token);
 
     localStorage.setItem('userName', extractedName);
@@ -75,9 +66,6 @@ export class AuthService {
     this.roleSubject.next(auth.role);
   }
 
-  /* ===============================
-     API CALLS
-     =============================== */
 
   login(email: string, password: string) {
     return this.http.post<any>(`${this.apiUrl}/login`, { email, password });
@@ -92,10 +80,7 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/register`, data);
   }
 
-  /* ===============================
-     LOGOUT
-     =============================== */
-
+ 
   logout() {
     localStorage.clear();
     this.roleSubject.next(null);
@@ -103,9 +88,7 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
-  /* ===============================
-     REQUIRED METHODS (RESTORED)
-     =============================== */
+ 
 
   isLoggedIn(): boolean {
     return !!this.roleSubject.value;

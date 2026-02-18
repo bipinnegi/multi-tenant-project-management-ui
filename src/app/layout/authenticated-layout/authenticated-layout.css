@@ -1,20 +1,20 @@
 .app-shell {
   display: flex;
-  flex-direction: column;   /* col: navbar on top, content below */
+  flex-direction: column;   
   height: 100vh;
   background: var(--bg-primary);
   transition: background 0.35s ease;
   overflow: hidden;
 }
 
-/* Navbar spans full width - never shifts */
+
 app-navbar {
   flex-shrink: 0;
   width: 100%;
   z-index: 200;
 }
 
-/* Row below the navbar: sidebar + page content */
+
 .below-navbar {
   display: flex;
   flex: 1;
