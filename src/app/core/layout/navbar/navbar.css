@@ -11,7 +11,7 @@
 }
 
 .mobile-menu-btn {
-  display: none;
+  display: flex;
   background: none;
   border: 1px solid var(--border-color);
   border-radius: 10px;
@@ -115,6 +115,43 @@ body.dark .navbar-link.active {
   color: var(--text-secondary);
 }
 
+
+.navbar-brand-logo {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+.navbar-brand-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.brand-suffix {
+  color: rgb(0, 110, 255);
+}
+
+
+.navbar-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+  margin: 0 12px;
+  flex-shrink: 0;
+}
+
+.workspace-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
 @media (max-width: 768px) {
   .mobile-menu-btn { display: flex; }
   .navbar { padding: 0 14px; height: 56px; }
@@ -123,4 +160,14 @@ body.dark .navbar-link.active {
   .user-role { display: none; }
   .user-chevron { display: none; }
   .user-menu { padding: 5px; border-radius: 50%; }
+  .navbar-brand-name { display: none; }
+  
+.navbar-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-color);
+  margin: 0 12px;
+  flex-shrink: 0;
+}
+
 }

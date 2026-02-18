@@ -1,62 +1,69 @@
-<aside class="jira-sidebar" [class.collapsed]="isCollapsed">
+<aside
+  class="jira-sidebar"
+  [class.expanded]="isExpanded"
+  [class.pinned]="isPinned"
+  [class.overlay]="isHovered && !isPinned"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+>
 
   <!-- Brand -->
   <div class="sidebar-brand">
     <img src="/branding/jira-logo.svg" alt="Logo" class="brand-logo" />
     <span class="brand-text">Project<span class="brand-suffix">Flow</span></span>
-    <button class="collapse-toggle" (click)="toggle()" aria-label="Toggle sidebar">
-      @if (!isCollapsed) {
-        <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/></svg>
-      } @else {
-        <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-      }
-    </button>
   </div>
 
   <!-- Navigation -->
   <nav class="sidebar-nav">
 
-    @if (!isCollapsed) {
-      <div class="sidebar-section-label">Workspace</div>
-    }
 
     @if (isOwner) {
-      <a class="nav-item add-item" (click)="openCreateModal()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0V7.5H4.5a.5.5 0 0 0 0 1H7.5v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-        </svg>
+      <a class="nav-item add-item" (click)="openCreateModal()" [title]="!isExpanded ? 'New Project' : ''">
+        <span class="nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0V7.5H4.5a.5.5 0 0 0 0 1H7.5v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+          </svg>
+        </span>
         <span class="label">New Project</span>
       </a>
     }
 
-    <a class="nav-item" routerLink="/status-overview" routerLinkActive="active">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.25-14.75v2a.25.25 0 0 1-.5 0v-2a.25.25 0 0 1 .5 0M3.5 8a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0m4.5-2.25a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2a.25.25 0 0 0 0-.5H8V6a.25.25 0 0 0-.25-.25z"/>
-      </svg>
+    <a class="nav-item" routerLink="/status-overview" routerLinkActive="active" [title]="!isExpanded ? 'Status Overview' : ''">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.25-14.75v2a.25.25 0 0 1-.5 0v-2a.25.25 0 0 1 .5 0M3.5 8a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0m4.5-2.25a.25.25 0 0 0-.25.25v2.5c0 .138.112.25.25.25h2a.25.25 0 0 0 0-.5H8V6a.25.25 0 0 0-.25-.25z"/>
+        </svg>
+      </span>
       <span class="label">Status Overview</span>
     </a>
 
-    <a class="nav-item" routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-        <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
-      </svg>
+    <a class="nav-item" routerLink="/projects" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" [title]="!isExpanded ? 'Projects' : ''">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+          <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z"/>
+        </svg>
+      </span>
       <span class="label">Projects</span>
     </a>
 
-    <a class="nav-item" routerLink="/members" routerLinkActive="active">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
-      </svg>
+    <a class="nav-item" routerLink="/members" routerLinkActive="active" [title]="!isExpanded ? 'Members' : ''">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+        </svg>
+      </span>
       <span class="label">Members</span>
     </a>
 
     @if (isOwner) {
-      <a class="nav-item" routerLink="/invite" routerLinkActive="active">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-          <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-          <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-        </svg>
+      <a class="nav-item" routerLink="/invite" routerLinkActive="active" [title]="!isExpanded ? 'Invite Users' : ''">
+        <span class="nav-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+            <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
+          </svg>
+        </span>
         <span class="label">Invite Users</span>
       </a>
     }
@@ -66,8 +73,8 @@
   <!-- Footer -->
   <div class="sidebar-footer">
 
-    <button class="theme-row" (click)="toggleDarkMode()" aria-label="Toggle theme">
-      <span class="theme-icon-wrap">
+    <button class="theme-row" (click)="toggleDarkMode()" [attr.aria-label]="isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'" [title]="!isExpanded ? (isDarkMode ? 'Light Mode' : 'Dark Mode') : ''">
+      <span class="nav-icon theme-icon-wrap">
         @if (!isDarkMode) {
           <img src="branding/dark.svg" alt="Dark mode" />
         } @else {
@@ -77,11 +84,13 @@
       <span class="label">{{ isDarkMode ? 'Light Mode' : 'Dark Mode' }}</span>
     </button>
 
-    <button class="logout-btn" (click)="logout()">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
-      </svg>
+    <button class="logout-btn" (click)="logout()" [title]="!isExpanded ? 'Sign Out' : ''">
+      <span class="nav-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+          <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+        </svg>
+      </span>
       <span class="label">Sign Out</span>
     </button>
 

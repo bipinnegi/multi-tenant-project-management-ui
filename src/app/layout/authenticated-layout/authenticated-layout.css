@@ -1,25 +1,37 @@
 .app-shell {
   display: flex;
+  flex-direction: column;   /* col: navbar on top, content below */
   height: 100vh;
   background: var(--bg-primary);
   transition: background 0.35s ease;
+  overflow: hidden;
 }
 
-.main-area {
-  flex: 1;
+/* Navbar spans full width - never shifts */
+app-navbar {
+  flex-shrink: 0;
+  width: 100%;
+  z-index: 200;
+}
+
+/* Row below the navbar: sidebar + page content */
+.below-navbar {
   display: flex;
-  flex-direction: column;
-  min-width: 0;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
+  position: relative;
 }
 
 .page-content {
   flex: 1;
   overflow-y: auto;
+  min-width: 0;
   background: var(--bg-primary);
   transition: background 0.35s ease;
 }
 
+/* Mobile backdrop */
 .sidebar-backdrop {
   position: fixed;
   inset: 0;
@@ -32,10 +44,4 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
-}
-
-@media (max-width: 768px) {
-  .app-shell {
-    flex-direction: column;
-  }
 }

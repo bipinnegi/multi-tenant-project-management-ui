@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, HostBinding } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
 import { ThemeService } from '../../core/services/theme.service';
@@ -14,10 +14,20 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./sidebar.css']
 })
 export class SidebarComponent implements OnInit, OnDestroy {
+  @Input() isPinned = false;
+
   isOwner = false;
-  isCollapsed = false;
   isDarkMode = false;
   showCreateModal = false;
+  isHovered = false;
+
+  // These put the classes directly on <app-sidebar> so :host.pinned
+  // and :host.overlay work in sidebar.css to control the host width.
+  @HostBinding('class.pinned')
+  get hostPinned(): boolean { return this.isPinned; }
+
+  @HostBinding('class.overlay')
+  get hostOverlay(): boolean { return this.isHovered && !this.isPinned; }
 
   private subs: Subscription[] = [];
 
@@ -26,12 +36,26 @@ export class SidebarComponent implements OnInit, OnDestroy {
     private themeService: ThemeService
   ) {}
 
+  get isExpanded(): boolean {
+    return this.isPinned || this.isHovered;
+  }
+
   openCreateModal() {
     this.showCreateModal = true;
   }
 
   onModalClosed() {
     this.showCreateModal = false;
+  }
+
+  onMouseEnter() {
+    if (!this.isPinned) {
+      this.isHovered = true;
+    }
+  }
+
+  onMouseLeave() {
+    this.isHovered = false;
   }
 
   ngOnInit() {
@@ -49,10 +73,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subs.forEach(s => s.unsubscribe());
-  }
-
-  toggle() {
-    this.isCollapsed = !this.isCollapsed;
   }
 
   toggleDarkMode() {

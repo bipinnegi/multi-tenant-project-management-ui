@@ -1,22 +1,27 @@
 <div class="app-shell">
-    @if (isSidebarOpen) {
-  <div
-    class="sidebar-backdrop"
-    (click)="closeSidebar()">
-  </div>
-}
 
-  <!-- Sidebar -->
-  <app-sidebar
-  [class.open]="isSidebarOpen">
-  </app-sidebar>
+  <!-- Navbar: full width, never shifts -->
+  <app-navbar (menuToggle)="toggleSidebar()"></app-navbar>
 
-  <!-- Main area -->
-  <div class="main-area">
-    <app-navbar (menuToggle)="toggleSidebar()"></app-navbar>
+  <!-- Below navbar: sidebar + content side by side -->
+  <div class="below-navbar">
 
+    <!-- Mobile backdrop -->
+    @if (isMobileBackdropVisible) {
+      <div class="sidebar-backdrop" (click)="closeSidebar()"></div>
+    }
+
+    <!-- Sidebar -->
+    <app-sidebar
+      [isPinned]="isSidebarOpen"
+      [class.open]="isSidebarOpen">
+    </app-sidebar>
+
+    <!-- Page content -->
     <div class="page-content">
       <router-outlet></router-outlet>
     </div>
+
   </div>
+
 </div>
